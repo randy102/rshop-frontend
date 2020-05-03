@@ -1,0 +1,26 @@
+
+.rui-list{
+
+  a{
+    display: flex;
+    padding: 15px 0;
+    margin: 10px 5px;
+    background: $main-item-bg;
+    color: $main-item-font;
+    transition: background 0.2s ease-out;
+    position: relative;
+    
+
+    &:hover, &.active{
+      color: $main-item-font-active;
+      background: $main-item-bg-active;
+      transition: background 0.2s ease-in;
+    }
+  }
+
+
+  svg{
+    margin: 2px 8px;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,68 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$main-item-bg: #ffffff;
+$main-item-font:  #546060;
+$main-item-font-active: white;
+$main-item-bg-active: #309191;
+$admin-bg: linear-gradient(to bottom right, #ffffff, #eaeaea);
+$admin-bg-img: url('../img/bg.jpg');
+
+@import './rui.list.scss', './rui.header.scss', './rui-subbar.scss';
+
+
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+  color: black;
+}
+
+li{
+  display: block;
+}
+
+.rui-page-admin{
+  background-image: $admin-bg-img;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.rui-page-wrapper{
+  width: 100%;
+}
+
+.rui-flex-wrapper{
+  display: flex;
+  width: 1200px;
+  margin:0 auto;
+}
+
+
+.rui-content-wrapper{
+  padding: 20px;
+  width: 75%;
+  margin: 10px 10px;
+  background: $main-item-bg;
+}
+
+.rui-leftbar-wrapper{
+  width: 20%;
+  height: 100vh;
+  color: white;
+}
+
+
+.rui-float-right{
+  margin-left:auto;
+}

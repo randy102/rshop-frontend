@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import IndexRoute from 'routes/index'
-import 'assets/css/rui.main.css'
+import 'antd/dist/antd.css';
+import 'assets/scss/rui.main.scss'
 
 export default function App() {
   return (
