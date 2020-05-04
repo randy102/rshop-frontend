@@ -10,7 +10,6 @@ import ManageDropdown from './ManageDropdown'
 import 'assets/scss/rui-admin/rui.main.scss'
 
 export default function Manage({match,location}) {
-  console.log(match)
   return (
     <div className="rui-page-wrapper rui-page-admin">
       <Header 

@@ -1,19 +1,14 @@
-import Shop from 'pages/shop/Shop'
-import Staff from 'pages/manage/Staff'
 import { TeamOutlined, ShopOutlined, ShoppingCartOutlined, SlidersOutlined, GiftOutlined, ShoppingOutlined } from '@ant-design/icons'
-import Product from 'pages/manage/Product'
-import Dashboard from 'pages/manage/Dashboard'
-import Sale from 'pages/manage/Sale'
-import Promotion from 'pages/manage/Promotion'
 import Item1 from 'pages/manage/Dashboard/item1/Item1'
 import Item2 from 'pages/manage/Dashboard/item2/Item2'
 
 export default [
+  // Dashboard
   {
     path: '/dashboard',
-    component: Dashboard,
     name: 'Bảng điều khiển',
-    icon: SlidersOutlined
+    icon: SlidersOutlined,
+    defaultRoute: '/item1'
   },
   {
     parent: '/dashboard',
@@ -30,34 +25,42 @@ export default [
     icon: SlidersOutlined
   },
 
-
+  // Product
   {
     path: '/product',
-    component: Product,
     name: 'Sản phẩm',
-    icon: ShoppingOutlined
+    icon: ShoppingOutlined,
+    defaultRoute: '/item1'
   },
+
+  // Sale
   {
     path: '/sale',
-    component: Sale,
     name: 'Bán hàng',
-    icon: ShoppingCartOutlined
+    icon: ShoppingCartOutlined,
+    defaultRoute: '/item1'
   },
+
+  // Shop
   {
     path: '/shop',
-    component: Shop,
     name: 'Cửa hàng',
-    icon: ShopOutlined
+    icon: ShopOutlined,
+    defaultRoute: '/item1'
   },
+
+  //Staff
   {
     path: '/staff',
-    component: Staff,
+    defaultRoute: '/item1',
     name: 'Nhân viên',
     icon: TeamOutlined
   },
+
+  // Promotion
   {
     path: '/promotion',
-    component: Promotion,
+    defaultRoute: '/item1',
     name: 'Khuyến mãi',
     icon: GiftOutlined
   }

@@ -16,7 +16,7 @@ $subbar-item-hover: #7780af;
       position: relative;
       background: blue;
       font-weight: bold;
-      transition: padding 0.4s;
+      transition: padding 0.2s;
     }
 
     svg{
@@ -26,7 +26,7 @@ $subbar-item-hover: #7780af;
 
     a.active{
       padding: 18px 100px;
-      transition: padding 0.4s ease-out;
+      transition: padding 0.2s ease-out;
     }
 
     

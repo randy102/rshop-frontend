@@ -1,6 +1,5 @@
 import React from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { AccountBookOutlined } from '@ant-design/icons'
 
 export default function Subbar({ routeConfigs, parent, defaultRoute, match, location }) {
   return (
