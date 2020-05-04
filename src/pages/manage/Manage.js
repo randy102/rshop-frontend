@@ -1,5 +1,5 @@
 import React from 'react'
-import ManageRouteConfig from 'configs/manage-routes'
+import ManageRouteConfig from 'configs/manageRouteConfig'
 
 import Header from 'components/header/Header'
 import LeftBar from 'components/leftbar/LeftBar'
@@ -26,7 +26,7 @@ export default function Manage({match,location}) {
         />
           
         <main className="rui-content-wrapper">
-          <ManageRoute match={match}/>
+          <ManageRoute routeConfigs={ManageRouteConfig} match={match}/>
         </main>
       </div>
     </div>

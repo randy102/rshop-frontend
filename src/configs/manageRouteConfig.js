@@ -2,7 +2,7 @@ import { TeamOutlined, ShopOutlined, ShoppingCartOutlined, SlidersOutlined, Gift
 import Item1 from 'pages/manage/Dashboard/item1/Item1'
 import Item2 from 'pages/manage/Dashboard/item2/Item2'
 
-export default [
+const ManageRouteConfig = [
   // Dashboard
   {
     path: '/dashboard',
@@ -30,7 +30,7 @@ export default [
     path: '/product',
     name: 'Sản phẩm',
     icon: ShoppingOutlined,
-    defaultRoute: '/item1'
+    defaultRoute: '/'
   },
 
   // Sale
@@ -38,7 +38,7 @@ export default [
     path: '/sale',
     name: 'Bán hàng',
     icon: ShoppingCartOutlined,
-    defaultRoute: '/item1'
+    defaultRoute: '/'
   },
 
   // Shop
@@ -46,22 +46,24 @@ export default [
     path: '/shop',
     name: 'Cửa hàng',
     icon: ShopOutlined,
-    defaultRoute: '/item1'
+    defaultRoute: '/'
   },
 
   //Staff
   {
     path: '/staff',
-    defaultRoute: '/item1',
     name: 'Nhân viên',
-    icon: TeamOutlined
+    icon: TeamOutlined,
+    defaultRoute: '/',
   },
 
   // Promotion
   {
     path: '/promotion',
-    defaultRoute: '/item1',
     name: 'Khuyến mãi',
-    icon: GiftOutlined
+    icon: GiftOutlined,
+    defaultRoute: '/',
   }
 ]
+
+export default ManageRouteConfig
