@@ -7,7 +7,7 @@ export default function ManageRoute({ match }) {
 
   return (
     <Switch>
-      {ManageRouteConfig.map(({ path, component, exact }) => (
+      {ManageRouteConfig.map(({ path, component, exact, parent }) => parent === undefined && (
         <Route
           exact={!!exact}
           path={match.path + path}

@@ -1,14 +1,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-$main-item-bg: #ffffff;
-$main-item-font:  #546060;
+$main-item-bg: #ffffff38;
+$main-item-font:  white;
 $main-item-font-active: white;
-$main-item-bg-active: #309191;
+$main-item-bg-active: #4c92c9;
 $admin-bg: linear-gradient(to bottom right, #ffffff, #eaeaea);
-$admin-bg-img: url('../img/bg.jpg');
+$admin-bg-img: url('../../img/bg1.jpg');
 
-@import './rui.list.scss', './rui.header.scss', './rui-subbar.scss';
+@import './rui.list.scss', './rui.header.scss', './rui-subbar.scss', './rui-inner-content.scss';
 
 
 *{
@@ -48,21 +48,8 @@ li{
   margin:0 auto;
 }
 
-
-.rui-content-wrapper{
-  padding: 20px;
-  width: 75%;
-  margin: 10px 10px;
-  background: $main-item-bg;
-}
-
 .rui-leftbar-wrapper{
   width: 20%;
   height: 100vh;
   color: white;
-}
-
-
-.rui-float-right{
-  margin-left:auto;
 }

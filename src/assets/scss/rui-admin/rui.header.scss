@@ -1,0 +1,20 @@
+.rui-header-wrapper{
+  display: flex;
+  background: $main-item-bg;
+  padding: 10px;
+  color: $main-item-font;
+
+  .rui-float-right{
+    margin-left:auto;
+
+    button{
+      background: $main-item-bg;
+      color: $main-item-font;
+    }
+  }
+}
+
+.rui-header-brand{
+  font-size: 18px;
+}
+
