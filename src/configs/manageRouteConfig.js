@@ -1,6 +1,5 @@
 import { TeamOutlined, ShopOutlined, ShoppingCartOutlined, SlidersOutlined, GiftOutlined, ShoppingOutlined } from '@ant-design/icons'
-import Item1 from 'pages/manage/Dashboard/item1/Item1'
-import Item2 from 'pages/manage/Dashboard/item2/Item2'
+
 
 const ManageRouteConfig = [
   // Dashboard
@@ -13,14 +12,14 @@ const ManageRouteConfig = [
   {
     parent: '/dashboard',
     path: '/item1',
-    component: Item1,
+    
     name: 'Item 1',
     icon: SlidersOutlined
   },
   {
     parent: '/dashboard',
     path: '/item2',
-    component: Item2,
+    
     name: 'Item 2',
     icon: SlidersOutlined
   },

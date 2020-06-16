@@ -1,0 +1,39 @@
+.rui-sidebar{
+  position: fixed;
+  left: 0;
+  top:0;
+  height: 100vh;
+  width: 80px;
+  background: #454545;
+  overflow: hidden;
+  overflow-y: auto;
+
+  .rui-sidebar-item{
+    display: flex;
+    margin: 10px 0;
+    justify-content: center;
+    position: relative;
+
+    a{
+      color: white;
+      padding: 20px;
+      border-radius: 50%;
+      line-height: 0;
+
+      &:hover{
+        background: #3ca9dd;
+        transition: background 0.3s;
+      }
+    }
+
+    svg{
+      font-size: 25px;
+    }
+
+    .rui-sidebar-name{
+      position: absolute;
+      left:0px;
+      top:0px;
+    }
+  }
+}
