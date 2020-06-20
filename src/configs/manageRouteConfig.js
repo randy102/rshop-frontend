@@ -1,67 +1,61 @@
-import { TeamOutlined, ShopOutlined, ShoppingCartOutlined, SlidersOutlined, GiftOutlined, ShoppingOutlined } from '@ant-design/icons'
-
 
 const ManageRouteConfig = [
   // Dashboard
   {
+    default: true,
     path: '/dashboard',
     name: 'Bảng điều khiển',
-    icon: SlidersOutlined,
-    defaultRoute: '/item1'
+    icon: 'DashboardOutlined',
+    component: 'Dashboard',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
   },
-  {
-    parent: '/dashboard',
-    path: '/item1',
-    
-    name: 'Item 1',
-    icon: SlidersOutlined
-  },
-  {
-    parent: '/dashboard',
-    path: '/item2',
-    
-    name: 'Item 2',
-    icon: SlidersOutlined
-  },
-
   // Product
   {
     path: '/product',
     name: 'Sản phẩm',
-    icon: ShoppingOutlined,
-    defaultRoute: '/'
+    icon: 'ShoppingOutlined',
   },
 
   // Sale
   {
     path: '/sale',
     name: 'Bán hàng',
-    icon: ShoppingCartOutlined,
-    defaultRoute: '/'
+    icon: 'ShoppingCartOutlined',
   },
 
   // Shop
   {
     path: '/shop',
     name: 'Cửa hàng',
-    icon: ShopOutlined,
-    defaultRoute: '/'
+    icon: 'ShopOutlined',
   },
 
   //Staff
   {
     path: '/staff',
     name: 'Nhân viên',
-    icon: TeamOutlined,
-    defaultRoute: '/',
+    icon: 'TeamOutlined',
+    
   },
 
   // Promotion
   {
     path: '/promotion',
     name: 'Khuyến mãi',
-    icon: GiftOutlined,
-    defaultRoute: '/',
+    icon: 'GiftOutlined',
+  },
+
+  {
+    path: '/account',
+    name: 'Tài khoản',
+    icon: 'UserOutlined'
   }
 ]
 

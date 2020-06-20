@@ -7,6 +7,7 @@
   background: #454545;
   overflow: hidden;
   overflow-y: auto;
+  z-index: 9999;
 
   .rui-sidebar-item{
     display: flex;
@@ -28,6 +29,18 @@
 
     svg{
       font-size: 25px;
+    }
+
+    &.active{
+      svg{
+        color: #6bd2fa;
+      }
+    }
+
+    &.bottom{
+      position: absolute;
+      width: 100%;
+      bottom: 30px;
     }
 
     .rui-sidebar-name{

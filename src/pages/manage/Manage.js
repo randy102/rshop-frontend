@@ -1,14 +1,22 @@
 import React from 'react'
 import SideBar from 'components/admin/sidebar'
-import Content from 'components/admin/content'
-
+import Container from 'components/admin/container'
+import ManageRouteConfig from 'configs/manageRouteConfig'
 import 'assets/scss/rui-admin/rui.main.scss'
+import Dashboard from './dashboard'
+import Router from 'components/admin/router'
 
-export default function Manage({match,location}) {
+const Components = {
+  Dashboard
+}
+
+export default function Manage() {
   return (
     <div>
-      <SideBar/>
-      <Content/>
+      <SideBar routes={ManageRouteConfig}/>
+      <Container>
+        <Router components={Components} routes={ManageRouteConfig}/>
+      </Container>
     </div>
   )
 }
