@@ -92,19 +92,21 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
   return (
     <div>
       <div className='rui-grid-btn'>
-        {headDef && headDef.map(btn => {
-          const Icon = AntIcon[btn.icon]
-          const singleError = (btn.selection === 'single'&& selectedRows.length !== 1)
-          const multipleError = (btn.selection === 'multiple' && selectedRows.length === 0)
+        {headDef && headDef.map(({icon,selection,name, onClick}) => {
+          const Icon = AntIcon[icon]
+          const singleError = (selection === 'single'&& selectedRows.length !== 1)
+          const multipleError = (selection === 'multiple' && selectedRows.length === 0)
           const isDisabled = singleError ? true : (multipleError ? true : false)
 
           return (
             <Button
+              style={{margin:'0 5px'}}
+              key={name}
               disabled={isDisabled}
-              onClick={() => btn.onClick(selectedRows)}
+              onClick={() => onClick(selectedRows)}
               icon={<Icon />}
             >
-              {btn.name}
+              {name}
             </Button>
           )
         })}
