@@ -31,13 +31,22 @@ const data = [
   },
 ]
 
+const headDef = [
+  {
+    icon: 'PlusOutlined',
+    name: 'Thêm',
+    onClick: (rows) => console.log(rows),
+    selection: 'multiple'
+  }
+]
+
 export default function General() {
   return (
     <div>
-      
       <Grid
         data={data}
         colDef={colDef}
+        headDef={headDef}
       />
     </div>
   )

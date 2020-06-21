@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import { Button, Table, Input, Space } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
+import * as AntIcon from '@ant-design/icons'
 import Highlighter from 'react-highlight-words';
 import './grid.scss'
 
-export default function Grid({ data, colDef }) {
+export default function Grid({ data, colDef, headDef, loading = false }) {
   const [selectedRows, setSelectedRows] = useState([])
   const [searchText, setSearchText] = useState('')
   const [searchedColumn, setSearchedColumn] = useState('')
   let searchInput
-  
+
+  // Filter =>
   const getColumnSearchProps = dataIndex => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
@@ -70,24 +72,48 @@ export default function Grid({ data, colDef }) {
     clearFilters();
     setSearchText('')
   };
+  // <= Filter
 
-  const sorterProp = (a,b,cd) => {
-    console.log({a,b,cd})
-    if( a[cd.dataIndex] > b[cd.dataIndex] ) return 1
-    if( a[cd.dataIndex] < b[cd.dataIndex]) return -1
+  // Sorter =>
+  const sorterProp = (a, b, cd) => {
+    console.log({ a, b, cd })
+    if (a[cd.dataIndex] > b[cd.dataIndex]) return 1
+    if (a[cd.dataIndex] < b[cd.dataIndex]) return -1
     return 0
   }
+  // => Sorter
 
-  colDef = colDef.map(cd => ({...cd, ...getColumnSearchProps(cd.dataIndex), sorter: (a,b) => sorterProp(a,b,cd)}))
+  colDef = colDef.map(cd => ({
+    ...cd,
+    ...getColumnSearchProps(cd.dataIndex),
+    sorter: (a, b) => sorterProp(a, b, cd)
+  }))
 
   return (
     <div>
       <div className='rui-grid-btn'>
-        <Button>Thêm</Button>
-        <Button>Sửa</Button>
-        <Button>Xóa</Button>
+        {headDef && headDef.map(btn => {
+          const Icon = AntIcon[btn.icon]
+          const singleError = (btn.selection === 'single'&& selectedRows.length !== 1)
+          const multipleError = (btn.selection === 'multiple' && selectedRows.length === 0)
+          const isDisabled = singleError ? true : (multipleError ? true : false)
+
+          return (
+            <Button
+              disabled={isDisabled}
+              onClick={() => btn.onClick(selectedRows)}
+              icon={<Icon />}
+            >
+              {btn.name}
+            </Button>
+          )
+        })}
       </div>
+
       <Table
+        pagination={{defaultPageSize:10}}
+        size={'middle'}
+        loading={loading}
         columns={colDef}
         dataSource={data}
         rowKey='_id'

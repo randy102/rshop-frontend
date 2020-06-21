@@ -5,6 +5,7 @@ const AdminRouteConfig = [
     name: 'Quản trị viên',
     icon: 'ControlOutlined',
     component: 'Staff',
+    default: true,
     childrens: [
       {
         default: true,
@@ -20,7 +21,6 @@ const AdminRouteConfig = [
     path: '/shops',
     name: 'Cửa hàng',
     icon: 'ShopOutlined',
-    default: true
   },
 
   // Người dùng
