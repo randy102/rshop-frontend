@@ -1,19 +1,19 @@
 import React from 'react'
 import Body from 'components/admin/body'
 import { getChildRoutes } from 'utils/routes'
-import AdminRouteConfig from 'configs/adminRouteConfig'
+import AdminRouteConfig from 'configs/routes/adminRouteConfig'
 import General from './general'
 
 const Component = {
   General
 }
 
-export default function Staff() {
-  const staffRoutes = getChildRoutes('Staff', AdminRouteConfig)
+export default function User() {
+  const staffRoutes = getChildRoutes('User', AdminRouteConfig)
   return (
     <Body
       routes={staffRoutes}
-      title='Quản trị viên'
+      title='Người dùng'
       components={Component}
     />
   )

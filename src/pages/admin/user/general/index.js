@@ -5,8 +5,6 @@ import RForm from 'components/admin/form'
 import { Form } from 'antd'
 import RInput from 'components/admin/form/rinput'
 
-
-
 const colDef = [
   {
     title: 'Name',
@@ -42,7 +40,7 @@ const data = [
 export default function General() {
   const [openForm, setOpenForm] = useState(false)
   const [form] = Form.useForm()
-
+  
   const headDef = [
     {
       icon: 'PlusOutlined',
@@ -52,7 +50,7 @@ export default function General() {
     {
       icon: 'PlusOutlined',
       name: 'Thêmd',
-      onClick: (rows) => setOpenForm(true),
+      onClick: (rows) => {},
     }
   ]
 

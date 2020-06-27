@@ -3,11 +3,11 @@ import 'assets/scss/rui-admin/rui.main.scss'
 import SideBar from 'components/admin/sidebar'
 import Container from 'components/admin/container'
 import Router from 'components/admin/router'
-import AdminRouteConfig from 'configs/adminRouteConfig'
-import Staff from './staff'
+import AdminRouteConfig from 'configs/routes/adminRouteConfig'
+import User from './user'
 
 const Components = {
-  Staff
+  User
 }
 
 export default function Admin() {

@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-declare const RInput: React.FunctionComponent<RInputProps>
+declare const RPassword: React.FunctionComponent<RInputProps>
 
-export default RInput
+export default RPassword
 
 export interface RInputProps{
   name: string
@@ -10,8 +10,8 @@ export interface RInputProps{
   rules?: Rules
   disabled?: boolean
   visible?: boolean
-  placeholder?: string
   prefix?: React.ReactNode
+  placeholder?: string
   onChange?: Function
 }
 export interface Rules{

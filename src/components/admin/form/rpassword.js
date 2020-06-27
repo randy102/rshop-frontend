@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Input } from 'antd'
 
-export default function RInput({name,label,rules, disabled = false, visible = true, placeholder, prefix,onChange=()=>{}}) {
+export default function RPassword({name,label,rules, disabled = false, visible = true, prefix, placeholder, onChange=()=>{}}) {
   const itemProps = {
     name,
     label,
@@ -34,7 +34,7 @@ export default function RInput({name,label,rules, disabled = false, visible = tr
 
   return visible && (
     <Form.Item {...itemProps}>
-      <Input {...inputProps}/>
+      <Input.Password {...inputProps}/>
     </Form.Item>
   )
 }

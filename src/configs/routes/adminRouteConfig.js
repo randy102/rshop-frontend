@@ -1,10 +1,10 @@
 const AdminRouteConfig = [
-  // Quản trị viên
+  // Người dùng
   {
-    path: '/staff',
-    name: 'Quản trị viên',
-    icon: 'ControlOutlined',
-    component: 'Staff',
+    path: '/users',
+    name: 'Người dùng',
+    icon: 'TeamOutlined',
+    component: 'User',
     default: true,
     childrens: [
       {
@@ -15,19 +15,12 @@ const AdminRouteConfig = [
       }
     ]
   },
-  
+
   // Shop
   {
     path: '/shops',
     name: 'Cửa hàng',
     icon: 'ShopOutlined',
-  },
-
-  // Người dùng
-  {
-    path: '/users',
-    name: 'Người dùng',
-    icon: 'TeamOutlined',
   },
 
   // Hợp đồng
@@ -58,7 +51,7 @@ const AdminRouteConfig = [
     icon: 'SkinOutlined',
   },
 
-  
+
 
   // Tài khoản
   {
