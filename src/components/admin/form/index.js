@@ -3,10 +3,11 @@ import { Form as AntForm } from 'antd'
 
 
 
-export default function RForm({ children, form, initialValues, onEnter = () => { } }) {
+export default function RForm({style, children, form, initialValues, onEnter = () => { } }) {
 
   return (
     <AntForm
+      style={style}
       onKeyPress={(e) => e.key === 'Enter' && onEnter()}
       form={form}
       layout='vertical'
@@ -42,7 +43,7 @@ var validateMessages = {
   },
   pattern: {
     // eslint-disable-next-line
-    mismatch: "'${label}' không đúng định dạng",
+    mismatch: "'${label}' không đúng",
   },
   types: {
     // eslint-disable-next-line

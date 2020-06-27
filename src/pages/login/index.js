@@ -18,6 +18,7 @@ export default function Login() {
   let history = useHistory()
   let [login] = useMutation(LOGIN)
   let [form] = Form.useForm()
+  
   if(Jwt.isSet()) return <Redirect to='/' />
 
   function handleLogin() {
@@ -26,6 +27,7 @@ export default function Login() {
       login({ variables: { input } })
         .then(result => {
           const token = result.data.loginUser
+          
           Jwt.set(token)
           setSubmitLoading(false)
           history.push('/admin')
