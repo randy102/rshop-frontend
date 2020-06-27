@@ -2,13 +2,18 @@ import React, { useState } from 'react'
 import { Button, Table, Input, Space } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import * as AntIcon from '@ant-design/icons'
-import Highlighter from 'react-highlight-words';
 import './grid.scss'
+
+function getNestedPath(data, path){
+  if(!Array.isArray(path)) return data[path]
+  for(let p of path){
+    data = data[p]
+  }
+  return data
+}
 
 export default function Grid({ data, colDef, headDef, loading = false }) {
   const [selectedRows, setSelectedRows] = useState([])
-  const [searchText, setSearchText] = useState('')
-  const [searchedColumn, setSearchedColumn] = useState('')
   let searchInput
 
   // Filter =>
@@ -48,37 +53,24 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
       if (visible) {
         setTimeout(() => searchInput.select());
       }
-    },
-    render: text =>
-      searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-          searchWords={[searchText]}
-          autoEscape
-          textToHighlight={text.toString()}
-        />
-      ) : (
-          text
-        ),
+    }
   });
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
-    setSearchText(selectedKeys[0])
-    setSearchedColumn(dataIndex)
   };
 
   const handleReset = clearFilters => {
     clearFilters();
-    setSearchText('')
   };
   // <= Filter
 
   // Sorter =>
   const sorterProp = (a, b, cd) => {
-    console.log({ a, b, cd })
-    if (a[cd.dataIndex] > b[cd.dataIndex]) return 1
-    if (a[cd.dataIndex] < b[cd.dataIndex]) return -1
+    const aVal = getNestedPath(a,cd.dataIndex)
+    const bVal = getNestedPath(b,cd.dataIndex)
+    if (aVal> bVal) return 1
+    if (aVal < bVal) return -1
     return 0
   }
   // => Sorter
@@ -113,8 +105,8 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
       </div>
 
       <Table
+        size='middle'
         pagination={{defaultPageSize:10}}
-        size={'middle'}
         loading={loading}
         columns={colDef}
         dataSource={data}

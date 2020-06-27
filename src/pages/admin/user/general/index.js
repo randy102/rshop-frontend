@@ -2,44 +2,37 @@ import React, { useState } from 'react'
 import Grid from 'components/admin/grid'
 import Drawer from 'components/admin/drawer'
 import RForm from 'components/admin/form'
-import { Form } from 'antd'
+import { Form, Tag } from 'antd'
 import RInput from 'components/admin/form/rinput'
-
-const colDef = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-  },
-]
-
-const data = [
-  {
-    _id: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
-  },
-  {
-    _id: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street',
-  },
-]
+import { useQuery } from '@apollo/react-hooks'
+import { GET_USERS } from './queries'
 
 
 
 export default function General() {
   const [openForm, setOpenForm] = useState(false)
   const [form] = Form.useForm()
+  let {data} = useQuery(GET_USERS)
+  
+
+  const colDef = [
+    {
+      title: 'Email',
+      dataIndex: ['credential','email'],
+      key:'email'
+    },
+    {
+      title: 'Tên',
+      dataIndex: ['profile','fullName'],
+      key: 'fullName'
+    },
+    {
+      title: 'Vai trò',
+      key: 'role',
+      dataIndex: 'isAdmin',
+      render: isAdmin => isAdmin ? <Tag color='red'>Admin</Tag> : <Tag color='blue'>User</Tag>
+    },
+  ]
   
   const headDef = [
     {
@@ -72,12 +65,12 @@ export default function General() {
 
   return (
     <div>
+
       <Grid
-        data={data}
+        data={data && data.users}
         colDef={colDef}
         headDef={headDef}
       />
-
       <Drawer
         footDef={footDef}
         title='Quản trị viên mới'
