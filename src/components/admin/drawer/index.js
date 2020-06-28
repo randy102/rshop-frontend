@@ -2,7 +2,7 @@ import React from 'react'
 import { Drawer as AntDrawer, Button } from 'antd'
 
 export default function Drawer({ visible, onClose, title, footDef = [], children }) {
-  const footer = footDef.length && footDef.map(({ name, onClick, visible = true, type = '' }) => {
+  var footer = footDef.length && footDef.map(({ name, onClick, visible = true, type = '' }) => {
     return (
       <Button
         key={name}

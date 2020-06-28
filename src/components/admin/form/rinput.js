@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Input } from 'antd'
 
-export default function RInput({name,label,rules, disabled = false, visible = true, placeholder, prefix,onChange=()=>{}}) {
+export default function RInput({value, name,label,rules, disabled = false, visible = true, placeholder, prefix,onChange=()=>{}}) {
   const itemProps = {
     name,
     label,
@@ -15,6 +15,7 @@ export default function RInput({name,label,rules, disabled = false, visible = tr
     prefix,
     disabled,
     placeholder,
+    value,
     onKeyPress: e => {
       if(disabled) {
         e.preventDefault()

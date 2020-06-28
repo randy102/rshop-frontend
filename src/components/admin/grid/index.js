@@ -1,20 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Table, Input, Space } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import * as AntIcon from '@ant-design/icons'
 import './grid.scss'
 
-function getNestedPath(data, path){
-  if(!Array.isArray(path)) return data[path]
-  for(let p of path){
+function getNestedPath(data, path) {
+  if (!Array.isArray(path)) return data[path]
+  for (let p of path) {
     data = data[p]
   }
   return data
 }
 
 export default function Grid({ data, colDef, headDef, loading = false }) {
-  const [selectedRows, setSelectedRows] = useState([])
-  let searchInput
+  var [selectedRows, setSelectedRows] = useState([])
+  var [selectedRowKeys, setSelectedRowKeys] = useState([])
+  var searchInput
+
+  useEffect(() => { setSelectedRowKeys([]) }, [data])
 
   // Filter =>
   const getColumnSearchProps = dataIndex => ({
@@ -48,7 +51,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
     ),
     filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
-      getNestedPath(record,dataIndex).toString().toLowerCase().includes(value.toLowerCase()),
+      getNestedPath(record, dataIndex).toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownVisibleChange: visible => {
       if (visible) {
         setTimeout(() => searchInput.select());
@@ -67,9 +70,9 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
 
   // Sorter =>
   const sorterProp = (a, b, cd) => {
-    const aVal = getNestedPath(a,cd.dataIndex)
-    const bVal = getNestedPath(b,cd.dataIndex)
-    if (aVal> bVal) return 1
+    const aVal = getNestedPath(a, cd.dataIndex)
+    const bVal = getNestedPath(b, cd.dataIndex)
+    if (aVal > bVal) return 1
     if (aVal < bVal) return -1
     return 0
   }
@@ -84,15 +87,15 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
   return (
     <div>
       <div className='rui-grid-btn'>
-        {headDef && headDef.map(({icon,selection = 'single',name, onClick}) => {
+        {headDef && headDef.map(({ icon, selection, name, onClick }) => {
           const Icon = AntIcon[icon]
-          const singleError = (selection === 'single'&& selectedRows.length !== 1)
+          const singleError = (selection === 'single' && selectedRows.length !== 1)
           const multipleError = (selection === 'multiple' && selectedRows.length === 0)
           const isDisabled = singleError ? true : (multipleError ? true : false)
 
           return (
             <Button
-              style={{margin:'0 5px'}}
+              style={{ margin: '0 5px' }}
               key={name}
               disabled={isDisabled}
               onClick={() => onClick(selectedRows)}
@@ -106,14 +109,18 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
 
       <Table
         size='middle'
-        pagination={{defaultPageSize:10}}
+        pagination={{ defaultPageSize: 10 }}
         loading={loading}
         columns={colDef}
         dataSource={data}
         rowKey='_id'
         rowSelection={{
           type: 'checkbox',
-          onChange: (_, rows) => setSelectedRows(rows)
+          onChange: (keys, rows) => {
+            setSelectedRows(rows)
+            setSelectedRowKeys(keys)
+          },
+          selectedRowKeys
         }}
       />
     </div>

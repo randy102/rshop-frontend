@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
 import Grid from 'components/admin/grid'
-import Drawer from 'components/admin/drawer'
-import RForm from 'components/admin/form'
-import { Form, Tag, message } from 'antd'
-import RInput from 'components/admin/form/rinput'
-import { useQuery } from '@apollo/react-hooks'
-import { GET_USERS } from './queries'
+import { Tag, message, Modal } from 'antd'
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import { GET_USERS, DELETE_USER } from './queries'
+import Form from './form'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 var colDef = [
   {
     title: 'Email',
-    dataIndex: ['credential','email'],
-    key:'email'
+    dataIndex: ['credential', 'email'],
+    key: 'email'
   },
   {
     title: 'Tên',
-    dataIndex: ['profile','fullName'],
+    dataIndex: ['profile', 'fullName'],
     key: 'fullName'
   },
   {
@@ -27,60 +26,52 @@ var colDef = [
 ]
 
 export default function General() {
-  const [openForm, setOpenForm] = useState(false)
-  const [form] = Form.useForm()
-  let {data} = useQuery(GET_USERS)
+  var [openForm, setOpenForm] = useState(false)
+  var [initRow, setInitRow] = useState()
+  var { data, refetch } = useQuery(GET_USERS)
+  var [deleteUser] = useMutation(DELETE_USER)
 
-  
   var headDef = [
     {
       icon: 'PlusOutlined',
       name: 'Tạo',
-      onClick: (rows) => {
+      onClick: () => {
         setOpenForm(true)
       }
     },
     {
       icon: 'EditOutlined',
       name: 'Sửa',
+      selection: 'single',
       onClick: (rows) => {
+        setInitRow(rows[0])
         setOpenForm(true)
       },
     },
     {
       icon: 'DeleteOutlined',
       name: 'Xóa',
+      selection: 'multiple',
       onClick: (rows) => {
-        setOpenForm(true)
-      },
-    },
-    {
-      icon: 'EyeOutlined',
-      name: 'Chi tiết',
-      onClick: (rows) => {
-        setOpenForm(true)
+        Modal.confirm({
+          title: 'Bạn có chắc muốn xóa những người dùng này?',
+          icon: <ExclamationCircleOutlined />,
+          content: 'Hành động này sẽ không thể hoàn tác',
+          onOk() {
+            let input = { ids: rows.map(r => r._id) }
+            deleteUser({ variables: { input } })
+              .then(res => {
+                message.success('Xóa thành công')
+                refetch()
+              }).catch(e => message.error(e.message))
+          }
+        })
+
       },
     }
   ]
 
-  var footDef = [
-    {
-      name: 'Lưu',
-      type: 'danger',
-      onClick: () => {
-        form.validateFields()
-          .then(values => {
-            
-          })
-          .catch(err => message.error(err.message))
-      }
-    },
 
-    {
-      name: 'Hủy',
-      onClick: () => setOpenForm(false),
-    }
-  ]
 
   return (
     <div>
@@ -90,23 +81,13 @@ export default function General() {
         headDef={headDef}
       />
 
-      <Drawer
-        footDef={footDef}
-        title='Quản trị viên mới'
-        onClose={() => setOpenForm(false)}
-        visible={openForm}
-      >
-        <RForm form={form} >
-          <RInput
-            label='test'
-            placeholder='Nhập...'
-            name='test'
-            rules={{
-              type: 'email'
-            }}
-          />
-        </RForm>
-      </Drawer>
+      <Form
+        openForm={openForm}
+        setOpenForm={setOpenForm}
+        initRow={initRow}
+        setInitRow={setInitRow}
+        refetch={refetch}
+      />
     </div>
   )
 }

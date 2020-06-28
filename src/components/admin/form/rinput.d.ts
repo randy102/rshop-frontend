@@ -13,6 +13,7 @@ export interface RInputProps{
   placeholder?: string
   prefix?: React.ReactNode
   onChange?: Function
+  value?: any
 }
 export interface Rules{
   max?: number;
