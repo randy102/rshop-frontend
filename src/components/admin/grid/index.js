@@ -48,7 +48,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
     ),
     filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+      getNestedPath(record,dataIndex).toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownVisibleChange: visible => {
       if (visible) {
         setTimeout(() => searchInput.select());
@@ -84,7 +84,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
   return (
     <div>
       <div className='rui-grid-btn'>
-        {headDef && headDef.map(({icon,selection,name, onClick}) => {
+        {headDef && headDef.map(({icon,selection = 'single',name, onClick}) => {
           const Icon = AntIcon[icon]
           const singleError = (selection === 'single'&& selectedRows.length !== 1)
           const multipleError = (selection === 'multiple' && selectedRows.length === 0)
