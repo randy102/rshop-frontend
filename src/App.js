@@ -5,15 +5,18 @@ import 'antd/dist/antd.css'
 import Loader from 'components/admin/loader'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { client } from 'configs/apollo'
+import { RecoilRoot } from 'recoil'
 
 export default function App() {
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Suspense fallback={<Loader />}>
-          <IndexRoute />
-        </Suspense>
-      </BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Suspense fallback={<Loader />}>
+            <IndexRoute />
+          </Suspense>
+        </BrowserRouter>
+      </RecoilRoot>
     </ApolloProvider>
   )
 }

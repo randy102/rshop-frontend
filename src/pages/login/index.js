@@ -9,6 +9,8 @@ import RPassword from 'components/admin/form/rpassword'
 import { MailOutlined, LockOutlined } from '@ant-design/icons'
 import { Jwt } from 'utils/jwt'
 import { useHistory, Redirect } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { CURRENT_USER } from 'recoil/atoms/currentUser'
 
 
 document.title = 'Đăng nhập'
@@ -18,7 +20,8 @@ export default function Login() {
   let history = useHistory()
   let [login] = useMutation(LOGIN)
   let [form] = Form.useForm()
-  
+  var setCurrentUser = useSetRecoilState(CURRENT_USER)
+
   if(Jwt.isSet()) return <Redirect to='/' />
 
   function handleLogin() {
@@ -26,9 +29,10 @@ export default function Login() {
       setSubmitLoading(true)
       login({ variables: { input } })
         .then(result => {
-          const token = result.data.loginUser
+          let {token, user} = result.data.loginUser
           
           Jwt.set(token)
+          setCurrentUser(user)
           setSubmitLoading(false)
           history.push('/admin')
         })

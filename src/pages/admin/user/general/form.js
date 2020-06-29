@@ -19,8 +19,6 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
     isAdmin: initRow.isAdmin
   }
 
-  console.log(initRow)
-  
   // eslint-disable-next-line
   useEffect(() => form.resetFields(), [initRow])
 
