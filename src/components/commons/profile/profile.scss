@@ -1,0 +1,15 @@
+.rui-profile-avatar{
+  margin: 0 auto;
+  border: 5px solid white;
+  border-radius: 50%;
+  box-shadow: 1px 1px 8px #919191;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  img{
+    width: 100%;
+    border-radius: 50%;
+  }
+}

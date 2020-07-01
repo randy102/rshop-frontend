@@ -31,7 +31,7 @@ export default function Guard({ children, onlyAdmin }) {
       setCurrentUser(data.currentUser)
     }
   }, [data])
-  console.log({ currentUser })
+ 
   if (loading) return <Loader />
 
   if (!currentUser) return <AuthError />

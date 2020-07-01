@@ -54,9 +54,9 @@ export default function General() {
       selection: 'multiple',
       onClick: (rows) => {
         Modal.confirm({
-          title: 'Bạn có chắc muốn xóa những người dùng này?',
+          title: 'Bạn có chắc muốn xóa?',
           icon: <ExclamationCircleOutlined />,
-          content: 'Hành động này sẽ không thể hoàn tác',
+          //content: 'Hành động này sẽ không thể hoàn tác',
           onOk() {
             let input = { ids: rows.map(r => r._id) }
             deleteUser({ variables: { input } })

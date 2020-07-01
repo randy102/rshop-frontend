@@ -1,4 +1,15 @@
-const AdminRouteConfig = [
+// @flow
+
+type RouteConfig = {
+  path: string,
+  name: string,
+  icon?: string,
+  component: string,
+  default?: boolean,
+  childrens?: RouteConfig[]
+}
+
+const AdminRouteConfig: RouteConfig[] = [
   // Người dùng
   {
     path: '/users',
@@ -21,6 +32,7 @@ const AdminRouteConfig = [
     path: '/shops',
     name: 'Cửa hàng',
     icon: 'ShopOutlined',
+    component:''
   },
 
   // Hợp đồng
@@ -28,6 +40,7 @@ const AdminRouteConfig = [
     path: '/contracts',
     name: 'Hợp đồng',
     icon: 'PaperClipOutlined',
+    component:''
   },
 
   // Quyền
@@ -35,6 +48,7 @@ const AdminRouteConfig = [
     path: '/permissions',
     name: 'Quyền',
     icon: 'KeyOutlined',
+    component:''
   },
 
   // Gói
@@ -42,6 +56,7 @@ const AdminRouteConfig = [
     path: '/plans',
     name: 'Gói sử dụng',
     icon: 'GiftOutlined',
+    component:''
   },
 
   // Mẫu thiết kế
@@ -49,6 +64,7 @@ const AdminRouteConfig = [
     path: '/templates',
     name: 'Mẫu thiết kế',
     icon: 'SkinOutlined',
+    component:''
   },
 
 
@@ -58,6 +74,15 @@ const AdminRouteConfig = [
     path: '/account',
     name: 'Tài khoản',
     icon: 'UserOutlined',
+    component: 'Account',
+    childrens : [
+      {
+        path: '/profile',
+        name: 'Hồ sơ',
+        component: 'Profile',
+        default: true
+      }
+    ]
   },
 ]
 

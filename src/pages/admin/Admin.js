@@ -5,9 +5,11 @@ import Container from 'components/admin/container'
 import Router from 'components/admin/router'
 import AdminRouteConfig from 'configs/routes/adminRouteConfig'
 import User from './user'
+import Account from './account'
 
 const Components = {
-  User
+  User,
+  Account
 }
 
 export default function Admin() {
