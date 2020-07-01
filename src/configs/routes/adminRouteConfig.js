@@ -1,15 +1,4 @@
-// @flow
-
-type RouteConfig = {
-  path: string,
-  name: string,
-  icon?: string,
-  component: string,
-  default?: boolean,
-  childrens?: RouteConfig[]
-}
-
-const AdminRouteConfig: RouteConfig[] = [
+const AdminRouteConfig = [
   // Người dùng
   {
     path: '/users',
@@ -81,6 +70,16 @@ const AdminRouteConfig: RouteConfig[] = [
         name: 'Hồ sơ',
         component: 'Profile',
         default: true
+      },
+      {
+        path: '/password',
+        name: 'Đổi mật khẩu',
+        component: 'Password'
+      },
+      {
+        path: '/logout',
+        name: 'Đăng xuất',
+        component: 'Logout'
       }
     ]
   },

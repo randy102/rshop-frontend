@@ -3,9 +3,13 @@ import { getChildRoutes } from 'utils/routes'
 import AdminRouteConfig from 'configs/routes/adminRouteConfig'
 import Body from 'components/admin/body'
 import Profile from './profile'
+import Password from './password'
+import Logout from './logout'
 
 var Component = {
-  Profile
+  Profile,
+  Password,
+  Logout
 }
 
 export default function Account() {

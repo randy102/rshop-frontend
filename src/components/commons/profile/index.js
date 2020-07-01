@@ -4,7 +4,7 @@ import './profile.scss'
 
 export default function UserProfile({ data, avatar }) {
   var [imgLoading, setImgLoading] = useState(true)
-  console.log(imgLoading)
+  
   return (
     <Row gutter={16}>
       <Col sm={24} >

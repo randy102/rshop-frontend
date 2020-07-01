@@ -1,14 +1,14 @@
 import React from 'react'
 import { Result, Button } from 'antd'
 
-document.title = 'Lỗi 403'
+document.title = 'Lỗi 401'
 export default function AuthError() {
   return (
     <Result
-      status="403"
-      title="Không có quyền truy cập"
-      subTitle="Xin lỗi, bạn không được phép truy cập vào trang này"
-      extra={<Button href='/' type="primary">Về trang chủ</Button>}
+      status="404"
+      title="Lỗi xác thực"
+      subTitle="Vui lòng đăng nhập để tiếp tục"
+      extra={<Button href='/login' type="primary">Đăng nhập</Button>}
     />
   )
 }
