@@ -37,7 +37,15 @@ const AdminRouteConfig = [
     path: '/permissions',
     name: 'Quyền',
     icon: 'KeyOutlined',
-    component:''
+    component:'Permission',
+    childrens: [
+      {
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General',
+        default: true
+      }
+    ]
   },
 
   // Gói

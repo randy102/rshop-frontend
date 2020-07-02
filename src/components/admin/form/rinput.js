@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Input } from 'antd'
 
-export default function RInput({value, name,label,rules, disabled = false, visible = true, placeholder, prefix,onChange=()=>{}}) {
+export default function RInput({value, textarea=false, name,label,rules, disabled = false, visible = true, placeholder, prefix,onChange=()=>{}}) {
   const itemProps = {
     name,
     label,
@@ -33,9 +33,11 @@ export default function RInput({value, name,label,rules, disabled = false, visib
     }
   }
 
+  const InputType = textarea ? Input.TextArea : Input
+
   return visible && (
     <Form.Item {...itemProps}>
-      <Input {...inputProps}/>
+      <InputType {...inputProps}/>
     </Form.Item>
   )
 }

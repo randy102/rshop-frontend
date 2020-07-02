@@ -33,40 +33,27 @@ export default function General() {
 
   var headDef = [
     {
-      icon: 'PlusOutlined',
-      name: 'Tạo',
+      type: 'create',
       onClick: () => {
         setOpenForm(true)
       }
     },
     {
-      icon: 'EditOutlined',
-      name: 'Sửa',
-      selection: 'single',
+      type: 'update',
       onClick: (rows) => {
         setInitRow(rows[0])
         setOpenForm(true)
       },
     },
     {
-      icon: 'DeleteOutlined',
-      name: 'Xóa',
-      selection: 'multiple',
+      type: 'delete',
       onClick: (rows) => {
-        Modal.confirm({
-          title: 'Bạn có chắc muốn xóa?',
-          icon: <ExclamationCircleOutlined />,
-          //content: 'Hành động này sẽ không thể hoàn tác',
-          onOk() {
-            let input = { ids: rows.map(r => r._id) }
-            deleteUser({ variables: { input } })
-              .then(res => {
-                message.success('Xóa thành công')
-                refetch()
-              }).catch(e => message.error(e.message))
-          }
-        })
-
+        let input = { ids: rows.map(r => r._id) }
+        deleteUser({ variables: { input } })
+          .then(res => {
+            message.success('Xóa thành công')
+            refetch()
+          }).catch(e => message.error(e.message))
       },
     }
   ]

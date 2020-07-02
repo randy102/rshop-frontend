@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Table, Input, Space } from 'antd'
-import { SearchOutlined } from '@ant-design/icons'
+import { Button, Table, Input, Space, Modal } from 'antd'
+import { SearchOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import * as AntIcon from '@ant-design/icons'
 import './grid.scss'
 
@@ -10,6 +10,29 @@ function getNestedPath(data, path) {
     data = data[p]
   }
   return data
+}
+
+var HEAD_DATA = {
+  create: {
+    icon: 'PlusOutlined',
+    name: 'Tạo'
+  },
+  read: {
+    icon: 'EyeOutlined',
+    name: 'Chi tiết',
+    selection: 'single'
+  },
+  update: {
+    icon: 'EditOutlined',
+    name: 'Sửa',
+    selection: 'single'
+  },
+  delete: {
+    icon: 'DeleteOutlined',
+    name: 'Xóa',
+    selection: 'multiple',
+    confirm: true
+  }
 }
 
 export default function Grid({ data, colDef, headDef, loading = false }) {
@@ -24,9 +47,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
         <Input
-          ref={node => {
-            searchInput = node;
-          }}
+          ref={node => { searchInput = node }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
@@ -50,55 +71,58 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
       </div>
     ),
     filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
-    onFilter: (value, record) =>
-      getNestedPath(record, dataIndex).toString().toLowerCase().includes(value.toLowerCase()),
-    onFilterDropdownVisibleChange: visible => {
-      if (visible) {
-        setTimeout(() => searchInput.select());
-      }
-    }
+    onFilter: (value, record) => getNestedPath(record, dataIndex).toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownVisibleChange: visible => visible && setTimeout(() => searchInput.select())
   });
-
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-  };
-
-  const handleReset = clearFilters => {
-    clearFilters();
-  };
+  function handleSearch(selectedKeys, confirm, dataIndex) { confirm() }
+  function handleReset(clearFilters) { clearFilters() }
   // <= Filter
 
   // Sorter =>
-  const sorterProp = (a, b, cd) => {
-    const aVal = getNestedPath(a, cd.dataIndex)
-    const bVal = getNestedPath(b, cd.dataIndex)
-    if (aVal > bVal) return 1
-    if (aVal < bVal) return -1
-    return 0
-  }
+  const getSorterProps = (cd) => ({
+    sorter: (a, b) => {
+      const aVal = getNestedPath(a, cd.dataIndex)
+      const bVal = getNestedPath(b, cd.dataIndex)
+      if (aVal > bVal) return 1
+      if (aVal < bVal) return -1
+      return 0
+    }
+  })
   // => Sorter
 
   colDef = colDef.map(cd => ({
     ...cd,
     ...getColumnSearchProps(cd.dataIndex),
-    sorter: (a, b) => sorterProp(a, b, cd)
+    ...getSorterProps(cd)
   }))
 
   return (
     <div>
       <div className='rui-grid-btn'>
         <Space>
-          {headDef && headDef.map(({ icon, selection, name, onClick }) => {
+          {headDef && headDef.map(({ icon, selection, name, onClick, type, confirm }) => {
+            icon = icon || HEAD_DATA[type]?.icon
+            name = name || HEAD_DATA[type]?.name
+            selection = selection || (type && HEAD_DATA[type].selection)
+            confirm = confirm || HEAD_DATA[type]?.confirm
+
             const Icon = AntIcon[icon]
             const singleError = (selection === 'single' && selectedRows.length !== 1)
             const multipleError = (selection === 'multiple' && selectedRows.length === 0)
             const isDisabled = singleError ? true : (multipleError ? true : false)
 
+            function confirmClick(cb) {
+              Modal.confirm({
+                title: 'Bạn có chắc muốn thực hiện hành động này?',
+                icon: <ExclamationCircleOutlined />,
+                onOk:() => cb(selectedRows)
+              })
+            }
             return (
               <Button
                 key={name}
                 disabled={isDisabled}
-                onClick={() => onClick(selectedRows)}
+                onClick={() => confirm ? confirmClick(onClick) : onClick(selectedRows)}
                 icon={<Icon />}
               >
                 {name}

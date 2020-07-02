@@ -6,10 +6,12 @@ import Router from 'components/admin/router'
 import AdminRouteConfig from 'configs/routes/adminRouteConfig'
 import User from './user'
 import Account from './account'
+import Permission from './permission'
 
 const Components = {
   User,
-  Account
+  Account,
+  Permission
 }
 
 export default function Admin() {

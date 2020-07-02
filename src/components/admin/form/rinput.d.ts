@@ -14,6 +14,7 @@ export interface RInputProps{
   prefix?: React.ReactNode
   onChange?: Function
   value?: any
+  textarea?: boolean
 }
 export interface Rules{
   max?: number;
