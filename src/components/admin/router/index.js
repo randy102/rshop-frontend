@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, useRouteMatch, Redirect, useLocation, useHistory } from 'react-router-dom'
+import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom'
 
 export default function Router({ routes, components }) {
   var match = useRouteMatch()

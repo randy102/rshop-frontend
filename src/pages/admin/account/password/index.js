@@ -1,12 +1,11 @@
 import React from 'react'
 import RForm from 'components/admin/form'
 import RPassword from 'components/admin/form/rpassword'
-import { Button, PageHeader, Form, message } from 'antd'
+import { Button, Form, message } from 'antd'
 import { useMutation } from '@apollo/react-hooks'
 import { CHANGE_USER_PASSWORD } from './queries'
 import { Jwt } from 'utils/jwt'
-import { useSetRecoilState } from 'recoil'
-import { CURRENT_USER } from 'recoil/atoms/currentUser'
+
 
 export default function Password() {
   var [form] = Form.useForm()

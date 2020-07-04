@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import Grid from 'components/admin/grid'
-import { Tag, message, Modal } from 'antd'
+import { Tag, message } from 'antd'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { GET_USERS, DELETE_USER } from './queries'
 import Form from './form'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
+
 
 var colDef = [
   {

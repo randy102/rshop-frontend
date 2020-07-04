@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { GET_PLANS, DELETE_PLAN, PUBLISH_PLAN, SUPPRESS_PLAN } from './queries'
 import { message, Tag } from 'antd'
 import * as moment from 'moment'
+import { currencyFormatter } from 'utils/string'
 
 var colDef = [
   {
@@ -26,7 +27,7 @@ var colDef = [
     title: 'Giá',
     dataIndex: 'price',
     key: 'price',
-    render: value => `đ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    render: value => currencyFormatter(value)
   },
   {
     title: 'Trạng thái',

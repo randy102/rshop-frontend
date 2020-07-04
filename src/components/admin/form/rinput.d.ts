@@ -12,6 +12,7 @@ export interface RInputProps{
   visible?: boolean
   placeholder?: string
   prefix?: React.ReactNode
+  suffix?: React.ReactNode
   onChange?: Function
   value?: any
   textarea?: boolean

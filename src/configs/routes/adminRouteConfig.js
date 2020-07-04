@@ -21,7 +21,15 @@ const AdminRouteConfig = [
     path: '/shops',
     name: 'Cửa hàng',
     icon: 'ShopOutlined',
-    component:''
+    component:'Shop',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
   },
 
   // Hợp đồng
@@ -29,7 +37,15 @@ const AdminRouteConfig = [
     path: '/contracts',
     name: 'Hợp đồng',
     icon: 'PaperClipOutlined',
-    component:''
+    component:'Contract',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
   },
 
   // Quyền
@@ -69,7 +85,15 @@ const AdminRouteConfig = [
     path: '/templates',
     name: 'Mẫu thiết kế',
     icon: 'SkinOutlined',
-    component:''
+    component:'Template',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
   },
 
 

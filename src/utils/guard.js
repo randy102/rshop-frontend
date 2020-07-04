@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import AuthError from 'pages/error/auth'
-import { useRecoilState } from 'recoil'
-import { CURRENT_USER } from 'recoil/atoms/currentUser'
+
 import Loader from 'components/admin/loader'
-import { useHistory } from 'react-router-dom'
+
 import { Jwt } from './jwt'
 import CredentialError from 'pages/error/credential'
 import PermissionError from 'pages/error/permission'

@@ -1,8 +1,9 @@
 import React from 'react'
 import { Form, Input, InputNumber } from 'antd'
 import './rinput.scss'
+import { currencyFormatter } from 'utils/string'
 
-export default function RInput({value, number=false, price=false, textarea=false, name,label,rules, disabled = false, visible = true, placeholder, prefix,onChange=()=>{}}) {
+export default function RInput({value, number=false, price=false, textarea=false, name,label,rules, disabled = false, visible = true, placeholder, prefix,suffix,onChange=()=>{}}) {
   const itemProps = {
     name,
     label,
@@ -15,6 +16,7 @@ export default function RInput({value, number=false, price=false, textarea=false
 
   const inputProps = {
     prefix,
+    suffix,
     disabled,
     placeholder,
     value,
@@ -37,8 +39,8 @@ export default function RInput({value, number=false, price=false, textarea=false
   }
 
   if(price){
-    inputProps.formatter = (value => `đ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','))
-    inputProps.parser = (value => value.replace(/\đ\s?|(,*)/g, ''))
+    inputProps.formatter = (value => 'đ ' + currencyFormatter(value))
+    inputProps.parser = (value => value.replace(/đ\s?|(,*)/g, ''))
   }
 
   var InputType = Input
