@@ -100,7 +100,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
     <div>
       <div className='rui-grid-btn'>
         <Space>
-          {headDef && headDef.map(({ icon, selection, name, onClick, type, confirm }) => {
+          {headDef && headDef.map(({ icon, selection, name, onClick, type, confirm, confirmMessage }) => {
             icon = icon || HEAD_DATA[type]?.icon
             name = name || HEAD_DATA[type]?.name
             selection = selection || (type && HEAD_DATA[type].selection)
@@ -113,7 +113,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
 
             function confirmClick(cb) {
               Modal.confirm({
-                title: 'Bạn có chắc muốn thực hiện hành động này?',
+                title: confirmMessage || 'Bạn có chắc muốn thực hiện hành động này?',
                 icon: <ExclamationCircleOutlined />,
                 onOk:() => cb(selectedRows)
               })

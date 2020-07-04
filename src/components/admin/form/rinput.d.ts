@@ -15,6 +15,8 @@ export interface RInputProps{
   onChange?: Function
   value?: any
   textarea?: boolean
+  number?: boolean
+  price?:boolean
 }
 export interface Rules{
   max?: number;

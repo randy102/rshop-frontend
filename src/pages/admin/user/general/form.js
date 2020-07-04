@@ -9,8 +9,8 @@ import RSwitch from 'components/admin/form/rswitch'
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
   var [form] = AntForm.useForm()
-  var [createUser] = useMutation(CREATE_USER)
-  var [updateUser] = useMutation(UPDATE_USER)
+  var [create] = useMutation(CREATE_USER)
+  var [update] = useMutation(UPDATE_USER)
 
   
   var initialValues = initRow && {
@@ -38,7 +38,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
           .then(input => {
             // If create
             if (!initRow) {
-              createUser({ variables: { input } })
+              create({ variables: { input } })
                 .then(res => {
                   message.success(`Tạo thành công ${res.data.createUser.credential.email}`)
                   clearFormData()
@@ -47,7 +47,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
             // If update
             else {
               let {email, fullName, ...updateInput} = {...input, _id: initRow._id} || {}
-              updateUser({variables: {input: updateInput}})
+              update({variables: {input: updateInput}})
                 .then(res => {
                   message.success(`Cập nhật thành công ${res.data.updateAdmin.credential.email}`)
                   clearFormData()

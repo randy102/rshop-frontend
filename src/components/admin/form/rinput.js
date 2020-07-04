@@ -1,13 +1,15 @@
 import React from 'react'
-import { Form, Input } from 'antd'
+import { Form, Input, InputNumber } from 'antd'
+import './rinput.scss'
 
-export default function RInput({value, textarea=false, name,label,rules, disabled = false, visible = true, placeholder, prefix,onChange=()=>{}}) {
+export default function RInput({value, number=false, price=false, textarea=false, name,label,rules, disabled = false, visible = true, placeholder, prefix,onChange=()=>{}}) {
   const itemProps = {
     name,
     label,
     rules: [{
       ...rules,
-      whitespace: !!rules?.required
+      whitespace: !!rules?.required,
+      type: (number || price) ? 'number' : rules?.type
     }]
   }
 
@@ -29,11 +31,19 @@ export default function RInput({value, textarea=false, name,label,rules, disable
       }
     },
     onChange: e => {
-      onChange(e.target.value)
+      let value = (number || price) ? e : e.target.value
+      onChange(value)
     }
   }
 
-  const InputType = textarea ? Input.TextArea : Input
+  if(price){
+    inputProps.formatter = (value => `đ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','))
+    inputProps.parser = (value => value.replace(/\đ\s?|(,*)/g, ''))
+  }
+
+  var InputType = Input
+  InputType = textarea ? Input.TextArea : InputType
+  InputType = (number || price) ? InputNumber : InputType
 
   return visible && (
     <Form.Item {...itemProps}>

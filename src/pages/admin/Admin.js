@@ -7,11 +7,13 @@ import AdminRouteConfig from 'configs/routes/adminRouteConfig'
 import User from './user'
 import Account from './account'
 import Permission from './permission'
+import Plan from './plan'
 
 const Components = {
   User,
   Account,
-  Permission
+  Permission,
+  Plan
 }
 
 export default function Admin() {

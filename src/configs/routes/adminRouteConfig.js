@@ -53,7 +53,15 @@ const AdminRouteConfig = [
     path: '/plans',
     name: 'Gói sử dụng',
     icon: 'GiftOutlined',
-    component:''
+    component:'Plan',
+    childrens: [
+      {
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General',
+        default: true
+      }
+    ]
   },
 
   // Mẫu thiết kế

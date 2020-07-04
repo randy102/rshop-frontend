@@ -4,13 +4,13 @@ import RForm from 'components/admin/form'
 import RInput from 'components/admin/form/rinput'
 import { Form as AntForm, message } from 'antd'
 import { useMutation } from '@apollo/react-hooks'
-import { UPDATE_PERMISSION, CREATE_PERMISSION } from './queries'
+import { UPDATE_PLAN, CREATE_PLAN } from './queries'
 
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
   var [form] = AntForm.useForm()
-  var [create] = useMutation(CREATE_PERMISSION)
-  var [update] = useMutation(UPDATE_PERMISSION)
+  var [create] = useMutation(CREATE_PLAN)
+  var [update] = useMutation(UPDATE_PLAN)
 
   // eslint-disable-next-line
   useEffect(() => form.resetFields(), [initRow])
@@ -39,7 +39,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
             }
             // If update
             else {
-              let updateInput  = { ...input, _id: initRow._id } || {}
+              let updateInput = { ...input, _id: initRow._id } || {}
               update({ variables: { input: updateInput } })
                 .then(res => {
                   message.success(`Cập nhật thành công`)
@@ -59,20 +59,37 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
   return (
     <Drawer
       footDef={footDef}
-      title={initRow ? initRow.name : 'Quyền mới'}
+      title={initRow ? initRow.name : 'Gói mới'}
       onClose={clearFormData}
       visible={openForm}
     >
       <RForm form={form} initialValues={initRow}>
 
-
         <RInput
           label='Tên'
-          placeholder='Nhập tên quyền...'
+          placeholder='Nhập tên gói...'
           name='name'
           rules={{
             required: true
           }}
+        />
+
+
+
+        <RInput
+          label='Ngày sử dụng'
+          placeholder='Nhập số ngày sử dụng...'
+          name='duration'
+          number
+          rules={{ min: 1, required: true }}
+        />
+
+        <RInput
+          label='Giá'
+          placeholder='Nhập giá tiền...'
+          name='price'
+          price
+          rules={{ required: true }}
         />
 
         <RInput
