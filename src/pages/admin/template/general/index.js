@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import Grid from 'components/admin/grid'
 import Form from './form'
-import { useQuery } from '@apollo/react-hooks'
-import { GET_TEMPLATES } from './queries'
-import { message, Tag } from 'antd'
-import * as moment from 'moment'
-import { currencyFormatter } from 'utils/string'
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import { GET_TEMPLATES, DELETE_TEMPLATE } from './queries'
+import { Tag, message } from 'antd'
+
 
 const colDef = [
   {
@@ -36,6 +35,7 @@ export default function General() {
   const [openForm, setOpenForm] = useState(false)
   const [initRow, setInitRow] = useState()
   const { data, refetch } = useQuery(GET_TEMPLATES)
+  const [deleteRow] = useMutation(DELETE_TEMPLATE)
 
   const headDef = [
     {
@@ -51,12 +51,23 @@ export default function General() {
         setOpenForm(true)
       },
     },
+    {
+      type: 'delete',
+      onClick: (rows) => {
+        deleteRow({variables: {id: rows[0]._id}})
+          .then(() => {
+            message.success('Xóa thành công')
+            refetch()
+          }).catch(e => message.error(e.message))
+      },
+      selection: 'single'
+    }
   ]
 
   return (
     <div>
       <Grid
-        data={data && data.plans}
+        data={data && data.templates}
         colDef={colDef}
         headDef={headDef}
       />

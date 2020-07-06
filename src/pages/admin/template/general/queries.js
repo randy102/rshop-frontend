@@ -27,3 +27,9 @@ export const UPDATE_TEMPLATES = gql`
     }
   }
 `
+
+export const DELETE_TEMPLATE = gql`
+  mutation Delete($id: String){
+    deleteTemplate(id: $id)
+  }
+`

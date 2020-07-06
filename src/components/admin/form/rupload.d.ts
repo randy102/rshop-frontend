@@ -10,7 +10,7 @@ export interface RUploadProps {
    * @property {string} viewUrl URL to load uploaded image 
    */
   viewUrl: string
-  
+  cropShape: 'round' | 'rect'
   label?: string
   initId?: string
   onChange?: (uploadedId: string) => void

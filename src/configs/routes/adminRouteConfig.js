@@ -80,10 +80,10 @@ const AdminRouteConfig = [
     ]
   },
 
-  // Mẫu thiết kế
+  // Chủ đề
   {
     path: '/templates',
-    name: 'chủ đề',
+    name: 'Chủ đề',
     icon: 'SkinOutlined',
     component:'Template',
     childrens: [

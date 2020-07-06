@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Upload, message, Button } from 'antd'
 import ImgCrop from 'antd-img-crop'
 import { LoadingOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
@@ -7,9 +7,11 @@ import './rupload.scss'
 
 const Axios = axios.default
 
-export default function RUpload({ label, url, initId, viewUrl, onChange = () => { } }) {
+export default function RUpload({cropShape = 'round', label, url, initId, viewUrl, onChange = () => { } }) {
   const [imageId, setImageId] = useState(initId)
   const [loading, setLoading] = useState()
+
+  useEffect(() => setImageId(initId), [initId])
 
   function handleChange(info) {
     if (info.file.status === 'uploading') {
@@ -51,7 +53,7 @@ export default function RUpload({ label, url, initId, viewUrl, onChange = () => 
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
       <div className="ant-upload-text">Upload</div>
     </div>
-  );
+  ); 
 
   return (
     <Form.Item label={label}>
@@ -64,7 +66,7 @@ export default function RUpload({ label, url, initId, viewUrl, onChange = () => 
         Xóa ảnh
       </Button>}
 
-      <ImgCrop shape='round' rotate>
+      <ImgCrop shape={cropShape} rotate>
         <Upload
           name={'file'}
           listType="picture-card"
