@@ -8,12 +8,12 @@ import { CREATE_USER, UPDATE_USER } from './queries'
 import RSwitch from 'components/admin/form/rswitch'
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
-  var [form] = AntForm.useForm()
-  var [create] = useMutation(CREATE_USER)
-  var [update] = useMutation(UPDATE_USER)
+  const [form] = AntForm.useForm()
+  const [create] = useMutation(CREATE_USER)
+  const [update] = useMutation(UPDATE_USER)
 
   
-  var initialValues = initRow && {
+  const initialValues = initRow && {
     email: initRow.credential.email,
     fullName: initRow.profile.fullName,
     isAdmin: initRow.isAdmin
@@ -29,7 +29,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
     refetch()
   }
 
-  var footDef = [
+  const footDef = [
     {
       name: 'Lưu',
       type: 'danger',

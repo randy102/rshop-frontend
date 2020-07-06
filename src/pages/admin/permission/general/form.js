@@ -8,9 +8,9 @@ import { UPDATE_PERMISSION, CREATE_PERMISSION } from './queries'
 
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
-  var [form] = AntForm.useForm()
-  var [create] = useMutation(CREATE_PERMISSION)
-  var [update] = useMutation(UPDATE_PERMISSION)
+  const [form] = AntForm.useForm()
+  const [create] = useMutation(CREATE_PERMISSION)
+  const [update] = useMutation(UPDATE_PERMISSION)
 
   // eslint-disable-next-line
   useEffect(() => form.resetFields(), [initRow])
@@ -22,7 +22,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
     refetch()
   }
 
-  var footDef = [
+  const footDef = [
     {
       name: 'Lưu',
       type: 'danger',

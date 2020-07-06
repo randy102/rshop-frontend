@@ -3,7 +3,7 @@ import { Row, Col, List, Spin } from 'antd'
 import './profile.scss'
 
 export default function UserProfile({ data, avatar }) {
-  var [imgLoading, setImgLoading] = useState(true)
+  const [imgLoading, setImgLoading] = useState(true)
   
   return (
     <Row gutter={16}>

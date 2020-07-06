@@ -7,7 +7,7 @@ import { message, Tag } from 'antd'
 import * as moment from 'moment'
 import { currencyFormatter } from 'utils/string'
 
-var colDef = [
+const colDef = [
   {
     title: 'Tên',
     dataIndex:'name',
@@ -51,14 +51,14 @@ var colDef = [
 ]
 
 export default function General() {
-  var [openForm, setOpenForm] = useState(false)
-  var [initRow, setInitRow] = useState()
-  var { data, refetch } = useQuery(GET_PLANS)
-  var [deletePlan] = useMutation(DELETE_PLAN)
-  var [publishPlan] = useMutation(PUBLISH_PLAN)
-  var [suppressPlan] = useMutation(SUPPRESS_PLAN)
+  const [openForm, setOpenForm] = useState(false)
+  const [initRow, setInitRow] = useState()
+  const { data, refetch } = useQuery(GET_PLANS)
+  const [deletePlan] = useMutation(DELETE_PLAN)
+  const [publishPlan] = useMutation(PUBLISH_PLAN)
+  const [suppressPlan] = useMutation(SUPPRESS_PLAN)
 
-  var headDef = [
+  const headDef = [
     {
       type: 'create',
       onClick: () => {

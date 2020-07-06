@@ -83,7 +83,7 @@ const AdminRouteConfig = [
   // Mẫu thiết kế
   {
     path: '/templates',
-    name: 'Mẫu thiết kế',
+    name: 'chủ đề',
     icon: 'SkinOutlined',
     component:'Template',
     childrens: [

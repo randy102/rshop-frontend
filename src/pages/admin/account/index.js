@@ -6,7 +6,7 @@ import Profile from './profile'
 import Password from './password'
 import Logout from './logout'
 
-var Component = {
+const Component = {
   Profile,
   Password,
   Logout

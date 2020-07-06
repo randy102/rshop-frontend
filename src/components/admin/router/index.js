@@ -2,8 +2,8 @@ import React from 'react'
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom'
 
 export default function Router({ routes, components }) {
-  var match = useRouteMatch()
-  var history = useHistory()
+  const match = useRouteMatch()
+  const history = useHistory()
   const defaultPath = routes.find(r => r.default).path
   const isDefaultPath = (history.location.pathname.length - match.path.length) <= 1
   

@@ -6,7 +6,7 @@ import { GET_USERS, DELETE_USER } from './queries'
 import Form from './form'
 
 
-var colDef = [
+const colDef = [
   {
     title: 'Email',
     dataIndex: ['credential', 'email'],
@@ -26,12 +26,12 @@ var colDef = [
 ]
 
 export default function General() {
-  var [openForm, setOpenForm] = useState(false)
-  var [initRow, setInitRow] = useState()
-  var { data, refetch } = useQuery(GET_USERS)
-  var [deleteUser] = useMutation(DELETE_USER)
+  const [openForm, setOpenForm] = useState(false)
+  const [initRow, setInitRow] = useState()
+  const { data, refetch } = useQuery(GET_USERS)
+  const [deleteUser] = useMutation(DELETE_USER)
 
-  var headDef = [
+  const headDef = [
     {
       type: 'create',
       onClick: () => {

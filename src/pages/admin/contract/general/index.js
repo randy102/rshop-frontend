@@ -6,7 +6,7 @@ import { GET_CONTRACTS } from './queries'
 import { Moment } from 'utils/moment'
 import { Tag } from 'antd'
 
-var colDef = [
+const colDef = [
   {
     title: 'Tên người dùng',
     dataIndex:['user','profile','fullName'],
@@ -45,12 +45,12 @@ var colDef = [
 ]
 
 export default function General() {
-  var [openForm, setOpenForm] = useState(false)
-  var [initRow, setInitRow] = useState()
-  var { data, refetch } = useQuery(GET_CONTRACTS)
+  const [openForm, setOpenForm] = useState(false)
+  const [initRow, setInitRow] = useState()
+  const { data, refetch } = useQuery(GET_CONTRACTS)
  
 
-  var headDef = [
+  const headDef = [
     {
       type: 'create',
       onClick: () => {

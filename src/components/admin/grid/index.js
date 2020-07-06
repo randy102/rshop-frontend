@@ -12,7 +12,7 @@ function getNestedPath(data, path) {
   return data
 }
 
-var HEAD_DATA = {
+const HEAD_DATA = {
   create: {
     icon: 'PlusOutlined',
     name: 'Tạo'
@@ -36,8 +36,8 @@ var HEAD_DATA = {
 }
 
 export default function Grid({ data, colDef, headDef, loading = false }) {
-  var [selectedRows, setSelectedRows] = useState([])
-  var [selectedRowKeys, setSelectedRowKeys] = useState([])
+  const [selectedRows, setSelectedRows] = useState([])
+  const [selectedRowKeys, setSelectedRowKeys] = useState([])
   var searchInput
 
   useEffect(() => { setSelectedRowKeys([]) }, [data])

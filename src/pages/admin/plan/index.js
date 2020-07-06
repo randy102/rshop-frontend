@@ -4,7 +4,7 @@ import General from './general'
 import Body from 'components/admin/body'
 import { getChildRoutes } from 'utils/routes'
 
-var Component = {
+const Component = {
   General
 }
 

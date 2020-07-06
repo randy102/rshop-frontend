@@ -11,11 +11,11 @@ import RDate from 'components/admin/form/rdate'
 import * as moment from 'moment'
 
 export default function Form({ openForm, setOpenForm, initRow, refetch }) {
-  var [form] = AntForm.useForm()
-  var [updateProfile] = useMutation(UPDATE_USER_PROFILE)
+  const [form] = AntForm.useForm()
+  const [updateProfile] = useMutation(UPDATE_USER_PROFILE)
 
 
-  var initialValues = initRow && {
+  const initialValues = initRow && {
     dob: moment(initRow.profile.dob),
     fullName: initRow.profile.fullName,
     address: initRow.profile.address,
@@ -39,7 +39,7 @@ export default function Form({ openForm, setOpenForm, initRow, refetch }) {
       }).catch(e => message.error(e.message))
   }
 
-  var footDef = [
+  const footDef = [
     {
       name: 'Lưu',
       type: 'danger',
@@ -47,7 +47,7 @@ export default function Form({ openForm, setOpenForm, initRow, refetch }) {
         form.validateFields()
           .then(input => {
 
-            var toUpdate = {
+            const toUpdate = {
               ...input, 
               avatar: initRow.profile.avatar, 
               dob: input.dob.valueOf()

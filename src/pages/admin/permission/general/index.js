@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { GET_PERMISSION, DELETE_PERMISSION } from './queries'
 import { message } from 'antd'
 
-var colDef = [
+const colDef = [
   {
     title: 'Tên',
     dataIndex:'name',
@@ -19,12 +19,12 @@ var colDef = [
 ]
 
 export default function General() {
-  var [openForm, setOpenForm] = useState(false)
-  var [initRow, setInitRow] = useState()
-  var { data, refetch } = useQuery(GET_PERMISSION)
-  var [deletePermission] = useMutation(DELETE_PERMISSION)
+  const [openForm, setOpenForm] = useState(false)
+  const [initRow, setInitRow] = useState()
+  const { data, refetch } = useQuery(GET_PERMISSION)
+  const [deletePermission] = useMutation(DELETE_PERMISSION)
 
-  var headDef = [
+  const headDef = [
     {
       type: 'create',
       onClick: () => {

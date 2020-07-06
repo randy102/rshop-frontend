@@ -8,9 +8,9 @@ import { UPDATE_PLAN, CREATE_PLAN } from './queries'
 
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
-  var [form] = AntForm.useForm()
-  var [create] = useMutation(CREATE_PLAN)
-  var [update] = useMutation(UPDATE_PLAN)
+  const [form] = AntForm.useForm()
+  const [create] = useMutation(CREATE_PLAN)
+  const [update] = useMutation(UPDATE_PLAN)
 
   // eslint-disable-next-line
   useEffect(() => form.resetFields(), [initRow])
@@ -22,7 +22,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
     refetch()
   }
 
-  var footDef = [
+  const footDef = [
     {
       name: 'Lưu',
       type: 'danger',

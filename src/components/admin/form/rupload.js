@@ -8,8 +8,8 @@ import './rupload.scss'
 const Axios = axios.default
 
 export default function RUpload({ label, url, initId, viewUrl, onChange = () => { } }) {
-  var [imageId, setImageId] = useState(initId)
-  var [loading, setLoading] = useState()
+  const [imageId, setImageId] = useState(initId)
+  const [loading, setLoading] = useState()
 
   function handleChange(info) {
     if (info.file.status === 'uploading') {
@@ -46,7 +46,7 @@ export default function RUpload({ label, url, initId, viewUrl, onChange = () => 
     return isJpgOrPng && isLt2M;
   }
 
-  var uploadButton = (
+  const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
       <div className="ant-upload-text">Upload</div>

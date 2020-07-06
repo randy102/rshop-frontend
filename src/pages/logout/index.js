@@ -5,7 +5,7 @@ import { CURRENT_USER } from 'recoil/atoms/currentUser'
 import { Jwt } from 'utils/jwt'
 
 export default function Logout() {
-  var setCurrentUser = useSetRecoilState(CURRENT_USER)
+  const setCurrentUser = useSetRecoilState(CURRENT_USER)
 
   // eslint-disable-next-line
   useEffect(() => {

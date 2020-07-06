@@ -10,10 +10,10 @@ import * as moment from 'moment'
 document.title = 'Hồ sơ'
 
 export default function Profile() {
-  var [openForm, setOpenForm] = useState(false)
-  var { data, refetch } = useQuery(GET_USER_PROFILE)
+  const [openForm, setOpenForm] = useState(false)
+  const { data, refetch } = useQuery(GET_USER_PROFILE)
 
-  var profileData = data && [
+  const profileData = data && [
     {
       title: 'Họ tên',
       content: data.currentUser.profile.fullName

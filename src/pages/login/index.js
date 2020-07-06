@@ -20,7 +20,7 @@ export default function Login() {
   let history = useHistory()
   let [login] = useMutation(LOGIN)
   let [form] = Form.useForm()
-  var setCurrentUser = useSetRecoilState(CURRENT_USER)
+  const setCurrentUser = useSetRecoilState(CURRENT_USER)
 
   if(Jwt.isSet()) return <Redirect to='/' />
 

@@ -8,8 +8,8 @@ import { Jwt } from 'utils/jwt'
 
 
 export default function Password() {
-  var [form] = Form.useForm()
-  var [changePassword] = useMutation(CHANGE_USER_PASSWORD)
+  const [form] = Form.useForm()
+  const [changePassword] = useMutation(CHANGE_USER_PASSWORD)
 
   function handleSubmit(){
     form.validateFields().then(input => {

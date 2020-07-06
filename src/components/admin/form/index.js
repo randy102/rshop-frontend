@@ -20,7 +20,7 @@ export default function RForm({style, children, form, initialValues, onEnter = (
   )
 }
 
-var validateMessages = {
+const validateMessages = {
   // eslint-disable-next-line
   required: "'${label}' không được trống!",
   // eslint-disable-next-line

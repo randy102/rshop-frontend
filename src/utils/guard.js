@@ -26,8 +26,8 @@ const GET_CURRENT_USER = gql`
 `
 
 export default function Guard({ children, onlyAdmin }) {
-  var { data, loading, error } = useQuery(GET_CURRENT_USER)
-  // var [currentUser, setCurrentUser] = useRecoilState(CURRENT_USER)
+  const { data, loading, error } = useQuery(GET_CURRENT_USER)
+  // const [currentUser, setCurrentUser] = useRecoilState(CURRENT_USER)
   // useEffect(() => {
   //   if (data) {
   //     setCurrentUser(data.currentUser)

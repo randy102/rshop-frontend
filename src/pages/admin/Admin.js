@@ -9,13 +9,15 @@ import Account from './account'
 import Permission from './permission'
 import Plan from './plan'
 import Contract from './contract'
+import Template from './template'
 
 const Components = {
   User,
   Account,
   Permission,
   Plan,
-  Contract
+  Contract,
+  Template
 }
 
 export default function Admin() {

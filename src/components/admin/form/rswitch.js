@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Switch as AntSwitch } from 'antd'
 
 function Switch(props){
-  var modifiedProps = {
+  const modifiedProps = {
     ...props,
     checked: props.value
   }
@@ -10,12 +10,12 @@ function Switch(props){
 }
 
 export default function RSwitch({name, label, checkedText, unCheckedText, onChange, visible=true}) {
-  var itemProps = {
+  const itemProps = {
     name,
     label
   }
 
-  var switchProps = {
+  const switchProps = {
     checkedChildren: checkedText,
     unCheckedChildren: unCheckedText,
     onChange

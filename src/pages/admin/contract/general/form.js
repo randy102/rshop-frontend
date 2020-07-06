@@ -11,10 +11,10 @@ import { currencyFormatter } from 'utils/string'
 
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
-  var [form] = AntForm.useForm()
-  var { data: planData, refetch: planRefetch } = useQuery(PUBLISHED_PLANS)
-  var { data: userData, refetch: userRefetch } = useQuery(GET_USERS)
-  var [create] = useMutation(CREATE_CONTRACT)
+  const [form] = AntForm.useForm()
+  const { data: planData, refetch: planRefetch } = useQuery(PUBLISHED_PLANS)
+  const { data: userData, refetch: userRefetch } = useQuery(GET_USERS)
+  const [create] = useMutation(CREATE_CONTRACT)
 
   // eslint-disable-next-line
   useEffect(() => form.resetFields(), [initRow])
@@ -26,7 +26,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
     refetch()
   }
 
-  var footDef = [
+  const footDef = [
     {
       name: 'Lưu',
       type: 'danger',
