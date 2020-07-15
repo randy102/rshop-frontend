@@ -34,7 +34,11 @@ export default function Login() {
           Jwt.set(token)
           setCurrentUser(user)
           setSubmitLoading(false)
-          history.push('/admin')
+          
+          if(user.isAdmin)
+            history.push('/admin')
+          else
+            history.push('/manage')
         })
         .catch(err => {
           setSubmitLoading(false)
