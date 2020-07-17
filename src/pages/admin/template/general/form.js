@@ -88,7 +88,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
   return (
     <Drawer
       footDef={footDef}
-      title={initRow ? initRow.name : 'Gói mới'}
+      title={initRow ? initRow.name : 'Chủ đề mới'}
       onClose={clearFormData}
       visible={openForm}
     >
@@ -96,7 +96,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
 
         <RInput
           label='Tên'
-          placeholder='Nhập tên gói...'
+          placeholder='Nhập tên chủ đề...'
           name='name'
           rules={{
             required: true

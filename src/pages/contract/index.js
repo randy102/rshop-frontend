@@ -18,7 +18,7 @@ export default function Contract() {
       title: "Bạn có chắc muốn đăng ký gói này?",
       onOk: () => {
         signContract({variables: {input: {idPlan}}})
-          .then(res => {
+          .then(() => {
             history.push('/manage')
             message.success("Đăng ký gói thành công!")
           })

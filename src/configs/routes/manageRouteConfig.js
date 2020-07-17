@@ -35,6 +35,15 @@ const ManageRouteConfig = [
     path: '/shop',
     name: 'Cửa hàng',
     icon: 'ShopOutlined',
+    component: 'Shop',
+    childrens: [
+      {
+        default: true,
+        path: '/create',
+        name: 'Tạo mới',
+        component: 'Create'
+      }
+    ]
   },
 
   //Staff

@@ -7,7 +7,7 @@ import './rupload.scss'
 
 const Axios = axios.default
 
-export default function RUpload({cropShape = 'round', label, url, initId, viewUrl, onChange = () => { } }) {
+export default function RUpload({ crop = true, cropShape = 'round', label, url = process.env.REACT_APP_PHOTO_API, initId, viewUrl = process.env.REACT_APP_S3URL, onChange = () => { } }) {
   const [imageId, setImageId] = useState(initId)
   const [loading, setLoading] = useState()
 
@@ -53,7 +53,41 @@ export default function RUpload({cropShape = 'round', label, url, initId, viewUr
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
       <div className="ant-upload-text">Upload</div>
     </div>
-  ); 
+  );
+
+  function renderUpload() {
+    if (crop)
+      return (
+        <ImgCrop shape={cropShape} rotate>
+          <Upload
+            name={'file'}
+            listType="picture-card"
+            className="avatar-uploader"
+            disabled={imageId}
+            showUploadList={false}
+            action={url}
+            beforeUpload={beforeUpload}
+            onChange={handleChange}
+          >
+            {imageId ? <img src={`${viewUrl}/${imageId}`} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+          </Upload>
+        </ImgCrop>
+      )
+    return (
+      <Upload
+        name={'file'}
+        listType="picture-card"
+        className="avatar-uploader"
+        disabled={imageId}
+        showUploadList={false}
+        action={url}
+        beforeUpload={beforeUpload}
+        onChange={handleChange}
+      >
+        {imageId ? <img src={`${viewUrl}/${imageId}`} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+      </Upload>
+    )
+  }
 
   return (
     <Form.Item label={label}>
@@ -66,20 +100,7 @@ export default function RUpload({cropShape = 'round', label, url, initId, viewUr
         Xóa ảnh
       </Button>}
 
-      <ImgCrop shape={cropShape} rotate>
-        <Upload
-          name={'file'}
-          listType="picture-card"
-          className="avatar-uploader"
-          disabled={imageId}
-          showUploadList={false}
-          action={url}
-          beforeUpload={beforeUpload}
-          onChange={handleChange}
-        >
-          {imageId ? <img src={`${viewUrl}/${imageId}`} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-        </Upload>
-      </ImgCrop>
+      {renderUpload()}
     </Form.Item>
   )
 }

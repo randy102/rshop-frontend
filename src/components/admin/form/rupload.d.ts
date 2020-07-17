@@ -1,15 +1,14 @@
 import * as React from 'react'
 
 export interface RUploadProps {
-  /**
-   * @property {string} url URL to upload image
-   */
+  
+  // URL to upload image
   url: string
-
-  /**
-   * @property {string} viewUrl URL to load uploaded image 
-   */
+  
+  // URL to load uploaded image 
   viewUrl: string
+
+  crop: boolean
   cropShape: 'round' | 'rect'
   label?: string
   initId?: string
