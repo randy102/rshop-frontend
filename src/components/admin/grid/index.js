@@ -17,6 +17,15 @@ const HEAD_DATA = {
     icon: 'PlusOutlined',
     name: 'Tạo'
   },
+  refresh: {
+    icon: 'RedoOutlined',
+    name: 'Tải lại'
+  },
+  detail: {
+    icon: 'EyeOutlined',
+    name: 'Chi tiết',
+    selection: 'single'
+  },
   read: {
     icon: 'EyeOutlined',
     name: 'Chi tiết',
@@ -123,7 +132,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
                 key={name}
                 disabled={isDisabled}
                 onClick={() => confirm ? confirmClick(onClick) : onClick(selectedRows)}
-                icon={<Icon />}
+                icon={Icon && <Icon />}
               >
                 {name}
               </Button>

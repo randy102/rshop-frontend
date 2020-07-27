@@ -9,7 +9,7 @@ function Switch(props){
   return <AntSwitch {...modifiedProps}/>
 }
 
-export default function RSwitch({name, label, checkedText, unCheckedText, onChange, visible=true}) {
+export default function RSwitch({name, label, checkedText, unCheckedText, onChange, visible=true, disabled=false}) {
   const itemProps = {
     name,
     label
@@ -18,11 +18,12 @@ export default function RSwitch({name, label, checkedText, unCheckedText, onChan
   const switchProps = {
     checkedChildren: checkedText,
     unCheckedChildren: unCheckedText,
-    onChange
+    onChange,
+    disabled
   }
   return visible && (
     <Form.Item {...itemProps}>
-      <Switch  {...switchProps}/>
+      <Switch {...switchProps}/>
     </Form.Item>
   )
 }

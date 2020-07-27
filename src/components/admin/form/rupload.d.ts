@@ -16,6 +16,7 @@ export interface RUploadProps {
   cropShape: 'round' | 'rect'
   label?: string
   initId?: string
+  disabled: boolean
   onChange?: (uploadedId: string) => void
   uploadApi?: (uploadApi: UploadApi) => void
 }

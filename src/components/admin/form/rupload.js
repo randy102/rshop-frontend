@@ -7,18 +7,18 @@ import './rupload.scss'
 
 const Axios = axios.default
 
-export default function RUpload({ crop = true, cropShape = 'round', uploadApi = () => {},label, url = process.env.REACT_APP_PHOTO_API, initId, viewUrl = process.env.REACT_APP_S3URL, onChange = () => { } }) {
+export default function RUpload({ crop = true, cropShape = 'round', disabled = false, uploadApi = () => { }, label, url = process.env.REACT_APP_PHOTO_API, initId, viewUrl = process.env.REACT_APP_S3URL, onChange = () => { } }) {
   const [imageId, setImageId] = useState(initId)
   const [loading, setLoading] = useState()
   useEffect(() => setImageId(initId), [initId])
 
   useEffect(() => {
     uploadApi({
-      reset(){
+      reset() {
         setImageId(undefined)
       }
     })
-  },[])
+  }, [])
 
 
   function handleChange(info) {
@@ -71,7 +71,7 @@ export default function RUpload({ crop = true, cropShape = 'round', uploadApi = 
             name={'file'}
             listType="picture-card"
             className="avatar-uploader"
-            disabled={imageId}
+            disabled={imageId || disabled}
             showUploadList={false}
             action={url}
             beforeUpload={beforeUpload}
@@ -100,7 +100,7 @@ export default function RUpload({ crop = true, cropShape = 'round', uploadApi = 
   return (
     <Form.Item label={label}>
       {imageId && <Button
-        style={{ marginBottom: 10 }}
+        style={{ marginBottom: 10, display: disabled ? 'none' : 'block' }}
         danger
         onClick={handleRemove}
         icon={<DeleteOutlined />}

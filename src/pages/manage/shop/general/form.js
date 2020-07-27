@@ -6,8 +6,6 @@ import { Form as AntForm, message } from 'antd'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import RUpload from 'components/admin/Form/RUpload'
 import { UPDATE_SHOP } from './queries'
-import RDate from 'components/admin/Form/RDate'
-import * as moment from 'moment'
 import { GET_TEMPLATES } from '../create/queries'
 import RRadio from 'components/admin/Form/RRadio'
 import RSwitch from 'components/admin/Form/RSwitch'
@@ -130,10 +128,10 @@ export default function Form({ openForm, setOpenForm, initRow, refetch }) {
           name="idTemplate"
           required
           optionRender={r => (
-            <div className="template-radio-item">
-              <div className="radio-name">{r.name}</div>
+            <RRadio.ImageItem style={{width: '150px'}}>
+              <RRadio.ImageItem.Title className="radio-name">{r.name}</RRadio.ImageItem.Title>
               <img src={`${process.env.REACT_APP_S3URL}/${r.demoImg}`} />
-            </div>
+            </RRadio.ImageItem>
           )}
           optionValue={r => r._id}
         />

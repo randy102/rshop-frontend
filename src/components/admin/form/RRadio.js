@@ -1,8 +1,22 @@
 import React from 'react'
 import { Form, Radio } from 'antd'
+import './rradio.scss'
 
+// export default class RRadio extends React.Component{
+//   constructor(props){
+//     super(props)
+//   }
 
-export default function RRadio({ disabled = false, required = false, name, label, data = [], prefix, placeholder, onChange = () => { }, optionRender=() =>{}, optionValue=()=>{} }) {
+//   static Image = 
+
+//   render(){
+//     return <FRRadio {...this.props}/>
+//   }
+// }
+
+// function FRRadioImage
+
+function RRadio({ disabled = false, required = false, name, label, data = [], prefix, placeholder, onChange = () => { }, optionRender=() =>{}, optionValue=()=>{} }) {
 
   const itemProps = {
     name,
@@ -32,3 +46,13 @@ export default function RRadio({ disabled = false, required = false, name, label
     </Form.Item>
   )
 }
+
+RRadio.ImageItem = function ImageItem({children, style}){
+  return <div style={style} className="radio-image-item">{children}</div>
+}
+
+RRadio.ImageItem.Title = function ImageTitle({children, style}){
+  return <div style={style} className="radio-image-title">{children}</div>
+}
+
+export default RRadio

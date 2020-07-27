@@ -10,6 +10,7 @@ import Permission from './permission'
 import Plan from './plan'
 import Contract from './contract'
 import Template from './template'
+import Shop from './shop'
 
 const Components = {
   User,
@@ -17,7 +18,8 @@ const Components = {
   Permission,
   Plan,
   Contract,
-  Template
+  Template,
+  Shop
 }
 
 export default function Admin() {

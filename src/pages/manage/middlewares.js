@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useQuery } from "@apollo/react-hooks"
 import { GET_ACTIVE_CONTRACT, GET_USER_SHOPS } from "./queries"
 import { Redirect, useRouteMatch, useHistory } from "react-router-dom"

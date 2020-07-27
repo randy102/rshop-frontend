@@ -28,6 +28,11 @@ const AdminRouteConfig = [
         path: '/general',
         name: 'Tổng quan',
         component: 'General'
+      },
+      {
+        path: '/list',
+        name: 'Danh sách cửa hàng',
+        component: 'List'
       }
     ]
   },
