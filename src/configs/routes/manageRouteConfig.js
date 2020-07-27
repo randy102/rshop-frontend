@@ -21,6 +21,15 @@ const ManageRouteConfig = [
     path: '/product',
     name: 'Sản phẩm',
     icon: 'ShoppingOutlined',
+    component: 'Product',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
   },
 
   // Sale
@@ -28,6 +37,15 @@ const ManageRouteConfig = [
     path: '/sale',
     name: 'Bán hàng',
     icon: 'ShoppingCartOutlined',
+    component: 'Sale',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
   },
 
   // Shop
@@ -39,6 +57,11 @@ const ManageRouteConfig = [
     childrens: [
       {
         default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      },
+      {
         path: '/create',
         name: 'Tạo mới',
         component: 'Create'
@@ -51,6 +74,15 @@ const ManageRouteConfig = [
     path: '/staff',
     name: 'Nhân viên',
     icon: 'TeamOutlined',
+    component: 'Staff',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
     
   },
 
@@ -59,12 +91,40 @@ const ManageRouteConfig = [
     path: '/promotion',
     name: 'Khuyến mãi',
     icon: 'GiftOutlined',
+    component: 'Promotion',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
   },
 
   {
     path: '/account',
     name: 'Tài khoản',
-    icon: 'UserOutlined'
+    icon: 'UserOutlined',
+    component: 'Account',
+    childrens : [
+      {
+        path: '/profile',
+        name: 'Hồ sơ',
+        component: 'Profile',
+        default: true
+      },
+      {
+        path: '/password',
+        name: 'Đổi mật khẩu',
+        component: 'Password'
+      },
+      {
+        path: '/logout',
+        name: 'Đăng xuất',
+        component: 'Logout'
+      }
+    ]
   }
 ]
 

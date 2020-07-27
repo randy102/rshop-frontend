@@ -1,3 +1,13 @@
-.rui-body{
-  padding:0 40px;
+.rui-body-wrap{
+  display: flex;
+  flex-wrap: wrap;
+
+  .rui-body-right{
+    width: 900px;
+    padding:0 40px;
+  }
+  
+  .rui-body-left{
+    width: 300px
+  }
 }

@@ -9,7 +9,7 @@ export default function Header() {
   function renderAuth() {
     if (Jwt.isSet()) {
       return (
-        <Link to="/manage">
+        <Link to="/0/manage">
           Trang quản lý
         </Link>
       )

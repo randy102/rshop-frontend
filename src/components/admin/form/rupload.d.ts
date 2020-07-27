@@ -1,5 +1,9 @@
 import * as React from 'react'
 
+export interface UploadApi{
+  reset: () => void
+}
+
 export interface RUploadProps {
   
   // URL to upload image
@@ -13,6 +17,7 @@ export interface RUploadProps {
   label?: string
   initId?: string
   onChange?: (uploadedId: string) => void
+  uploadApi?: (uploadApi: UploadApi) => void
 }
 
 declare const RUpload: React.FunctionComponent<RUploadProps>

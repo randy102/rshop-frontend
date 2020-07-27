@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Grid from 'components/admin/grid'
+import Grid from 'components/admin/Grid'
 import Form from './form'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { GET_TEMPLATES, DELETE_TEMPLATE } from './queries'

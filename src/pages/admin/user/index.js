@@ -1,5 +1,5 @@
 import React from 'react'
-import Body from 'components/admin/body'
+import Body from 'components/admin/Body'
 import { getChildRoutes } from 'utils/routes'
 import AdminRouteConfig from 'configs/routes/adminRouteConfig'
 import General from './general'

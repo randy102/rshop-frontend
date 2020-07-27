@@ -1,0 +1,20 @@
+.rui-status{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin:-1px 10px;
+  
+  
+  &.active{
+    background: #34f231;
+  }
+
+  &.inactive{
+    background: #ff8c8c;
+  }
+
+  &.pending{
+    background: rgb(247, 247, 0);
+  }
+}

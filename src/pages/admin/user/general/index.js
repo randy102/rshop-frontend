@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Grid from 'components/admin/grid'
+import Grid from 'components/admin/Grid'
 import { Tag, message } from 'antd'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { GET_USERS, DELETE_USER } from './queries'

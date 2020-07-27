@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import Drawer from 'components/admin/drawer'
-import RForm from 'components/admin/form'
-import RInput from 'components/admin/form/rinput'
+import Drawer from 'components/admin/Drawer'
+import RForm from 'components/admin/Form'
+import RInput from 'components/admin/Form/RInput'
 import { Form as AntForm, message } from 'antd'
 import { useMutation } from '@apollo/react-hooks'
 import { CREATE_USER, UPDATE_USER } from './queries'
-import RSwitch from 'components/admin/form/rswitch'
+import RSwitch from 'components/admin/Form/RSwitch'
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
   const [form] = AntForm.useForm()

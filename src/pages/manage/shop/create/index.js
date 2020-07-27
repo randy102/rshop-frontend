@@ -1,32 +1,47 @@
 import React, { useState, useEffect } from 'react'
 import './create.scss'
-import RForm from 'components/admin/form'
-import RInput from 'components/admin/form/rinput'
-import RUpload from 'components/admin/form/rupload'
-import RSelect from 'components/admin/form/rselect'
+import RForm from 'components/admin/Form'
+import RInput from 'components/admin/Form/RInput'
+import RUpload from 'components/admin/Form/RUpload'
+import RSelect from 'components/admin/Form/RSelect'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { GET_TEMPLATES, CREATE_SHOP } from './queries'
 import { Button, Spin, Form, message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+import { useHistory } from 'react-router-dom'
+import { useSetRecoilState, useRecoilState } from 'recoil'
+import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
+import { USER_SHOPS } from 'recoil/atoms/userShops'
+import { client } from 'configs/apollo'
+import { GET_USER_SHOPS } from 'pages/manage/queries'
+import RRadio from 'components/admin/Form/RRadio'
 
 export default function Create() {
-  const { data: dataTemplates, refetch: refetchTemplate } = useQuery(GET_TEMPLATES)
+  const { data: dataTemplates } = useQuery(GET_TEMPLATES)
   const [createShop] = useMutation(CREATE_SHOP)
+  const history = useHistory()
 
-  const [demoImg, setDemoImg] = useState()
-  const [demoLoading, setDemoLoading] = useState(true)
   const [brandImg, setBrandImg] = useState()
   const [form] = Form.useForm()
+  const [userShops] = useRecoilState(USER_SHOPS)
 
-  useEffect(() => {
-    setDemoLoading(true)
-  }, [demoImg])
-
-  function handleCreate(){
+  function handleCreate() {
     form.validateFields().then((input) => {
-      const toCreate = {...input, brandImg}
-      createShop({variables: {input: toCreate}})
+      const toCreate = { ...input, brandImg }
+      createShop({ variables: { input: toCreate } })
         .then(res => {
+          client.writeQuery({
+            query: GET_USER_SHOPS,
+            data: {
+              userShops: [...userShops, res.data.createShop]
+            }
+          })
+          const close = message.loading('Đang tải', 0)
+          setTimeout(() => {
+            close()
+            history.push(`/${res.data.createShop.domain}/manage`)
+          })
+
           message.success('Tạo thành công!')
         }).catch(e => message.error(e.message))
     })
@@ -44,8 +59,9 @@ export default function Create() {
 
         <RInput
           label='Tên miền'
+          suffix={`.${process.env.REACT_APP_DOMAIN}`}
           name='domain'
-          placeholder='Không chứa ký tự đặc biệt, số hoặc khoảng trống. VD: tgdd'
+          placeholder='Nhập tên miền. VD: tgdd'
           rules={{ required: true, pattern: /^[a-zA-Z]+$/ }}
         />
 
@@ -53,26 +69,25 @@ export default function Create() {
           crop={false}
           label="Ảnh thương hiệu"
           onChange={setBrandImg}
+          initId={brandImg}
         />
 
-        <RSelect
+
+        <RRadio
           data={dataTemplates && dataTemplates.activeTemplates}
           label="Chủ đề"
           name="idTemplate"
           required
-          refetch={refetchTemplate}
-          optionRender={r => r.name}
+          optionRender={r => (
+            <div className="template-radio-item">
+              <div className="radio-name">{r.name}</div>
+              <img src={`${process.env.REACT_APP_S3URL}/${r.demoImg}`} />
+            </div>
+          )}
           optionValue={r => r._id}
-          showSearch={false}
-          onChange={val => setDemoImg(dataTemplates.activeTemplates.find(r => r._id === val).demoImg)}
         />
 
-        <div className="template-demo">
-          {demoLoading && demoImg && <Spin/>}
-          <img style={{display: demoImg ? 'block' : 'none'}} onLoad={() => setDemoLoading(false)} src={`${process.env.REACT_APP_S3URL}/${demoImg}`} />
-        </div>
-
-        <Button onClick={handleCreate} type='primary' block icon={<PlusOutlined/>}>Tạo</Button>
+        <Button onClick={handleCreate} type='primary' block icon={<PlusOutlined />}>Tạo</Button>
       </RForm>
     </div>
   )

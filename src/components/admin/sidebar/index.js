@@ -12,12 +12,12 @@ export default function SideBar({routes}) {
     <div className='rui-sidebar'>
       {routes.map(item => {
         const Icon = AntIcon[item.icon]
-        const ifActive = location.pathname.includes(match.path + item.path) ? 'active' : ''
+        const ifActive = location.pathname.includes(match.url + item.path) ? 'active' : ''
 
         return (
           <div key={item.path} className={`rui-sidebar-item ${ifActive}`}>
             <Tooltip placement="right" title={item.name}>
-              <Link to={match.path + item.path}>
+              <Link to={match.url + item.path}>
                 <Icon />
               </Link>
             </Tooltip>

@@ -1,6 +1,6 @@
 import React from 'react'
-import RForm from 'components/admin/form'
-import RPassword from 'components/admin/form/rpassword'
+import RForm from 'components/admin/Form'
+import RPassword from 'components/admin/Form/RPassword'
 import { Button, Form, message } from 'antd'
 import { useMutation } from '@apollo/react-hooks'
 import { CHANGE_USER_PASSWORD } from './queries'
@@ -29,7 +29,7 @@ export default function Password() {
   }
 
   return (
-    <RForm form={form} style={{ width: '400px', margin: '15px 50px' }}>
+    <RForm form={form} style={{ width: '50%', margin: '15px auto' }}>
       <RPassword
         label='Mật khẩu hiện tại'
         name='old'

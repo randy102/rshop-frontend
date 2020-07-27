@@ -1,38 +1,32 @@
 import React from 'react'
-import SideBar from 'components/admin/sidebar'
-import Container from 'components/admin/container'
+import SideBar from 'components/admin/SideBar'
+import Container from 'components/admin/Container'
 import ManageRouteConfig from 'configs/routes/manageRouteConfig'
-import 'assets/scss/rui-admin/rui.main.scss'
+import './manage.scss'
 import Dashboard from './dashboard'
-import Router from 'components/admin/router'
-import { useQuery } from '@apollo/react-hooks'
-import { GET_ACTIVE_CONTRACT_AND_USER_SHOPS } from './queries'
-import { Redirect } from 'react-router-dom'
-import ShopHeader from 'components/admin/shop-header'
+import Router from 'components/admin/Router'
+import ShopHeader from 'components/admin/ShopHeader'
 import Shop from './shop'
+import { MiddleWare } from './middlewares'
+import Account from './account'
 
 const Components = {
   Dashboard,
-  Shop
+  Shop,
+  Account
 }
 
 export default function Manage() {
-  const { data } = useQuery(GET_ACTIVE_CONTRACT_AND_USER_SHOPS)
-
-  if (data) {
-    // If not have contract or expired
-    if(!data.activeContract._id)
-      return <Redirect to="/contract" />
-
-  }
 
   return (
-    <div>
-      <SideBar routes={ManageRouteConfig} />
-      <ShopHeader />
-      <Container style={{paddingTop: 80}}>
-        <Router components={Components} routes={ManageRouteConfig} />
-      </Container>
-    </div>
+    <MiddleWare.Contract>
+      <MiddleWare.Shop>
+        <SideBar routes={ManageRouteConfig} />
+        <ShopHeader />
+        <Container style={{ paddingTop: 80 }}>
+          <Router components={Components} routes={ManageRouteConfig} />
+        </Container>
+      </MiddleWare.Shop>
+    </MiddleWare.Contract>
   )
 }

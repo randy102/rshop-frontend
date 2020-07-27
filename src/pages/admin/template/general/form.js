@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Drawer from 'components/admin/drawer'
-import RForm from 'components/admin/form'
-import RInput from 'components/admin/form/rinput'
+import Drawer from 'components/admin/Drawer'
+import RForm from 'components/admin/Form'
+import RInput from 'components/admin/Form/RInput'
 import { Form as AntForm, message } from 'antd'
 import { useMutation } from '@apollo/react-hooks'
 import { CREATE_TEMPLATES, UPDATE_TEMPLATES } from './queries'
-import RSwitch from 'components/admin/form/rswitch'
-import RUpload from 'components/admin/form/rupload'
+import RSwitch from 'components/admin/Form/RSwitch'
+import RUpload from 'components/admin/Form/RUpload'
 
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
@@ -14,6 +14,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
   const [create] = useMutation(CREATE_TEMPLATES)
   const [update] = useMutation(UPDATE_TEMPLATES)
 
+  const [uploadApi, setUploadApi] = useState()
   const [demo, setDemo] = useState()
 
   // eslint-disable-next-line
@@ -21,6 +22,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
 
   function clearFormData() {
     form.resetFields()
+    uploadApi.reset()
     setInitRow(undefined)
     setOpenForm(false)
     refetch()
@@ -129,6 +131,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
           initId={initRow?.demoImg}
           cropShape='rect'
           onChange={handleDemoImgChange}
+          uploadApi={api => setUploadApi(api)}
         />
 
       </RForm>

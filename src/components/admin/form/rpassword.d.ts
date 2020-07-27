@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { RInputProps } from './rinput';
+import { RInputProps } from './RInput';
 
 declare const RPassword: React.FunctionComponent<RInputProps>
 

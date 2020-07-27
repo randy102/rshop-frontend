@@ -1,13 +1,18 @@
 import React from 'react'
-import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom'
+import { Switch, Route, useRouteMatch, useHistory, useLocation } from 'react-router-dom'
+import NotFoundError from 'pages/error/notfound'
 
 export default function Router({ routes, components }) {
   const match = useRouteMatch()
   const history = useHistory()
-  const defaultPath = routes.find(r => r.default).path
-  const isDefaultPath = (history.location.pathname.length - match.path.length) <= 1
+  const location = useLocation()
   
-  if(isDefaultPath) history.replace(match.path + defaultPath)
+  const defaultPath = routes.find(r => r.default).path
+  const isDefaultPath = (location.pathname.length - match.url.length) <= 1
+  const defaultUrl = match.path.replace(/:domain/,match.params.domain) + defaultPath
+
+
+  if(isDefaultPath) history.replace(defaultUrl)
 
   return (
     <div>
@@ -23,6 +28,7 @@ export default function Router({ routes, components }) {
             }}
           />)
         })}
+        <Route key="default" path={match.path} component={NotFoundError}/>
       </Switch>
     </div>
   )

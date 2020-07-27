@@ -1,34 +1,38 @@
-.rui-subbar-title{
+.rui-subbar-title {
   font-weight: bold;
   font-size: 25px;
-  border-bottom: 1px solid #8ea4ac61;
+  border-bottom: 1px solid #8ea4ac1c;
   padding-bottom: 5px;
 }
 
-.rui-subbar-menu{
+.rui-subbar-menu {
   margin-top: 20px;
-
 
   .rui-subbar-item {
     display: flex;
 
-    a{
+    a {
       padding: 10px 16px;
       width: 100%;
       color: #919191;
       font-size: 16px;
       border-left: 4px solid white;
-      
-      &:hover{
+      border-left: 4px solid #c9c9c952;
+
+      &:hover {
         color: #3ca9dd;
         transition: color 0.3s;
       }
 
-      &.active{
+      &.active {
         color: #3ca9dd;
         border-left: 4px solid #3ca9dd;
         transition: box-shadow 0.3s;
         transition: border-left 0.3s;
+        background: #f5fcffa1;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        font-weight: bold;
       }
     }
   }

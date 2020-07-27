@@ -2,7 +2,7 @@ import React from 'react'
 import General from './general'
 import AdminRouteConfig from 'configs/routes/adminRouteConfig'
 import { getChildRoutes } from 'utils/routes'
-import Body from 'components/admin/body'
+import Body from 'components/admin/Body'
 
 const Component = {
   General

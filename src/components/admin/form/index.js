@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form as AntForm } from 'antd'
-
+import './index.scss'
 
 
 export default function RForm({style, children, form, initialValues, onEnter = () => { } }) {

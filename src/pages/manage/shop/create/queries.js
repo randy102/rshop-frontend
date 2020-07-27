@@ -4,6 +4,15 @@ export const CREATE_SHOP = gql`
   mutation Create($input: CreateShopInput){
     createShop(input: $input){
       _id
+      name
+      isActive
+      domain
+      brandImg
+      template {
+        _id
+        name
+        code
+      }
     }
   }
 `

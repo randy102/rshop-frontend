@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import AuthError from 'pages/error/auth'
 
-import Loader from 'components/admin/loader'
+import Loader from 'components/admin/Loader'
 
 import { Jwt } from './jwt'
 import CredentialError from 'pages/error/credential'

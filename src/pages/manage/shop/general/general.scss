@@ -1,0 +1,58 @@
+.rui-manage-shop-brand {
+  width: 100%;
+  box-shadow: 0 0 8px #a8a8a8;
+}
+
+.rui-manage-shop-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .rui-manage-shop-item {
+    width: 45%;
+    box-shadow: 0 0 8px #cccccc;
+    text-align: center;
+    margin: 20px 0;
+
+    .title {
+      border-bottom: 1px solid #f2f2f2;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 10px;
+    }
+
+    .content {
+      padding: 10px;
+    }
+  }
+}
+
+.template-radio-item{
+  padding: 10px;
+  padding-top: 8px;
+  position: relative;
+  left: -35px;
+  top: -10px;
+  display: inline-block;
+  width: 150px;
+  border: 1px solid rgba(255, 255, 255, 0);
+
+  .radio-name{
+    padding-left: 30px;
+    font-weight: 600;
+  }
+
+  img{
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+
+.ant-radio-wrapper-checked .template-radio-item{
+  border: 1px solid #aac5f0;
+  box-shadow: 0 0 5px #bababa;
+}
+
+.ant-radio{
+  vertical-align: top;
+}

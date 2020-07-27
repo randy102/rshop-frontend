@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
-import Drawer from 'components/admin/drawer'
-import RForm from 'components/admin/form'
-import RInput from 'components/admin/form/rinput'
+import Drawer from 'components/admin/Drawer'
+import RForm from 'components/admin/Form'
+import RInput from 'components/admin/Form/RInput'
 import { Form as AntForm, message } from 'antd'
 import { useMutation } from '@apollo/react-hooks'
-import RSwitch from 'components/admin/form/rswitch'
-import RUpload from 'components/admin/form/rupload'
+import RUpload from 'components/admin/Form/RUpload'
 import { UPDATE_USER_PROFILE } from './queries'
-import RDate from 'components/admin/form/rdate'
+import RDate from 'components/admin/Form/RDate'
 import * as moment from 'moment'
 
 export default function Form({ openForm, setOpenForm, initRow, refetch }) {

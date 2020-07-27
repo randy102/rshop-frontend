@@ -6,19 +6,21 @@ export default function UserProfile({ data, avatar }) {
   const [imgLoading, setImgLoading] = useState(true)
   
   return (
-    <Row gutter={16}>
-      <Col sm={24} >
+    <Row gutter={16} className="rui-profile-wrap">
+      <Col sm={24} lg={12} style={{display:'flex'}}>
         <div class="rui-profile-avatar">
           {imgLoading && <Spin/>}
           <img style={{display: imgLoading?'none':'block'}} onLoad={() => setImgLoading(false)} alt="avatar" src={avatar} />
         </div>
       </Col>
-      <Col sm={24}>
+      <Col sm={24} lg={12}>
         <List
+          className="rui-profile-info"
+          split={false}
           size='large'
           dataSource={data}
           renderItem={item => (
-            <List.Item style={{ textAlign: 'center' }}>
+            <List.Item>
               <b>{item.title}</b> <br />{item.content}
             </List.Item>
           )}
