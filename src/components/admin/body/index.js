@@ -1,5 +1,4 @@
 import React from 'react'
-import { Row, Col } from 'antd'
 import Subbar from '../SubBar'
 import Router from '../Router'
 import './body.scss'

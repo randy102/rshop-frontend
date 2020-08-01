@@ -16,37 +16,6 @@ const ManageRouteConfig = [
       }
     ]
   },
-  // Product
-  {
-    path: '/product',
-    name: 'Sản phẩm',
-    icon: 'ShoppingOutlined',
-    component: 'Product',
-    childrens: [
-      {
-        default: true,
-        path: '/general',
-        name: 'Tổng quan',
-        component: 'General'
-      }
-    ]
-  },
-
-  // Sale
-  {
-    path: '/sale',
-    name: 'Bán hàng',
-    icon: 'ShoppingCartOutlined',
-    component: 'Sale',
-    childrens: [
-      {
-        default: true,
-        path: '/general',
-        name: 'Tổng quan',
-        component: 'General'
-      }
-    ]
-  },
 
   // Shop
   {
@@ -54,6 +23,7 @@ const ManageRouteConfig = [
     name: 'Cửa hàng',
     icon: 'ShopOutlined',
     component: 'Shop',
+    require: 'SHOP',
     childrens: [
       {
         default: true,
@@ -69,12 +39,65 @@ const ManageRouteConfig = [
     ]
   },
 
+  // Product
+  {
+    path: '/product',
+    name: 'Sản phẩm',
+    icon: 'ShoppingOutlined',
+    component: 'Product',
+    require: 'PRODUCT',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
+  },
+
+  // Sale
+  {
+    path: '/sale',
+    name: 'Bán hàng',
+    icon: 'DollarCircleOutlined',
+    component: 'Sale',
+    require: 'SALE',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
+  },
+  // Activities
+  {
+    path: '/activity',
+    name: 'Hoạt động',
+    icon: 'FundProjectionScreenOutlined',
+    component: 'Activity',
+    require: 'ACTIVITY',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
+  },
+
+  
+
   //Staff
   {
     path: '/staff',
-    name: 'Nhân viên',
+    name: 'Thành viên',
     icon: 'TeamOutlined',
     component: 'Staff',
+    require: 'STAFF',
     childrens: [
       {
         default: true,
@@ -86,45 +109,13 @@ const ManageRouteConfig = [
     
   },
 
-  // Promotion
-  {
-    path: '/promotion',
-    name: 'Khuyến mãi',
-    icon: 'GiftOutlined',
-    component: 'Promotion',
-    childrens: [
-      {
-        default: true,
-        path: '/general',
-        name: 'Tổng quan',
-        component: 'General'
-      }
-    ]
-  },
+  
 
   {
     path: '/account',
     name: 'Tài khoản',
     icon: 'UserOutlined',
     component: 'Account',
-    childrens : [
-      {
-        path: '/profile',
-        name: 'Hồ sơ',
-        component: 'Profile',
-        default: true
-      },
-      {
-        path: '/password',
-        name: 'Đổi mật khẩu',
-        component: 'Password'
-      },
-      {
-        path: '/logout',
-        name: 'Đăng xuất',
-        component: 'Logout'
-      }
-    ]
   }
 ]
 

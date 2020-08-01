@@ -7,6 +7,18 @@ export const GET_ACTIVE_CONTRACT = gql`
     }
   }
 `
+
+export const GET_CURRENT_ROLE = gql`
+  query CurrentRole($idShop: String){
+    currentRole(idShop: $idShop){
+      isMaster
+      permissions{
+        name
+      }
+    }
+  }
+`
+
 export const GET_USER_SHOPS = gql`
   query{
     userShops{

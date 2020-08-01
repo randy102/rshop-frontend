@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 export interface RSelectProps{
+  mode: 'multiple' | 'tags'
   disabled?: boolean
   name: string
   label: string
@@ -14,6 +15,7 @@ export interface RSelectProps{
   refetch: () => void
   optionRender: (row: object) => React.ReactNode
   optionValue: (row: object) => any
+  labelRender: (row: object) => React.ReactNode
 }
 
 declare const RSelect: React.FunctionComponent<RSelectProps>

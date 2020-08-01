@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './shop-header.scss'
 import { Link, useHistory } from 'react-router-dom'
-import { Dropdown, Button, Menu, Empty } from 'antd'
-import { DownOutlined, PlusOutlined, ShopOutlined } from '@ant-design/icons'
+import { Dropdown, Button, Menu, Empty, Badge } from 'antd'
+import { DownOutlined, PlusOutlined, ShopOutlined, LinkOutlined, BellFilled } from '@ant-design/icons'
 import { useRecoilState } from 'recoil'
 import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
 import { USER_SHOPS } from 'recoil/atoms/userShops'
-import Status from 'components/commons/Status'
 
 export default function ShopHeader() {
   const [currentShop] = useRecoilState(CURRENT_SHOP)
@@ -14,27 +13,37 @@ export default function ShopHeader() {
   const history = useHistory()
 
   function renderShops() {
-    if(userShops?.length)
-    return (
-      <Menu>
-        {userShops.map(shop => (
-          <Menu.Item key={shop._id} onClick={() => history.push(`/${shop.domain}/manage`)}>
-            <Status type={shop.isActive ? 'active' : 'inactive'} content={shop.name}/>
-          </Menu.Item>
-        ))}
-      </Menu>
-    )
+    if (userShops?.length)
+      return (
+        <Menu>
+          {userShops.map(shop => (
+            <Menu.Item key={shop._id} onClick={() => history.push(`/${shop.domain}/manage`)}>
+              <Badge color={shop.isActive?'green':'red'}/> {shop.name}
+            </Menu.Item>
+          ))}
+        </Menu>
+      )
     else return (
       <Menu>
         <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={false}>
-          <div style={{padding: '10px'}}>
+          <div style={{ padding: '10px' }}>
             Bạn chưa có cửa hàng nào!
           </div>
-          <Button href="/manage/shop/create" type="primary">Tạo ngay</Button>
+          <Button href="/0/manage/shop/create" type="primary">Tạo ngay</Button>
         </Empty>
       </Menu>
     )
+  }
 
+  function renderNotif() {
+   
+    return (
+      <Menu>
+        <Menu.Item >
+          Thông báo
+        </Menu.Item>
+      </Menu>
+    )
   }
 
   return (
@@ -47,9 +56,21 @@ export default function ShopHeader() {
       </div>
 
       <div className="item">
-        <Link to="/manage/shop/create">
+        <Link to={`/${currentShop?.domain || '0'}/manage/shop/create`}>
           <PlusOutlined /> Tạo cửa hàng
         </Link>
+      </div>
+
+      <div className="item">
+        <a href={`http://${currentShop?.domain || '0'}.${window.location.host}`}>
+          <LinkOutlined /> Xem cửa hàng
+        </a>
+      </div>
+
+      <div className="item">
+        <Dropdown overlay={renderNotif()}>
+          <Link><Badge dot><BellFilled /></Badge></Link>
+        </Dropdown>
       </div>
     </div>
   )

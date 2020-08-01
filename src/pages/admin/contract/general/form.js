@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import Drawer from 'components/admin/Drawer'
 import RForm from 'components/admin/Form'
-import RInput from 'components/admin/Form/RInput'
 import { Form as AntForm, message } from 'antd'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { CREATE_CONTRACT, PUBLISHED_PLANS } from './queries'

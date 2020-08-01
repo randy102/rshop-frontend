@@ -3,16 +3,14 @@ import { useRecoilState } from 'recoil'
 import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
 import { useQuery } from '@apollo/react-hooks'
 import { GET_SHOP } from './queries'
-import './general.scss'
-import Status from 'components/commons/Status'
-import { Button } from 'antd'
+import { Button, Tag } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import Form from './form'
+import './general.scss'
 
 export default function General() {
   const [currentShop] = useRecoilState(CURRENT_SHOP)
   const { data, refetch } = useQuery(GET_SHOP, { variables: { domain: currentShop?.domain } })
-
   const [openForm, setOpenForm] = useState(false)
 
   const { shopByDomain: shop } = data || {}
@@ -36,7 +34,7 @@ export default function General() {
 
         <div className='rui-manage-shop-item'>
           <div className='title'>Tình trạng</div>
-          <div className='content'>{shop?.isActive ? <Status content='Đang hoạt động'/> : <Status type='inactive' content='Dừng hoạt động'/> }</div>
+          <div className='content'>{shop?.isActive ? <Tag color="success">Đang hoạt động</Tag> : <Tag color="red">Dừng hoạt động</Tag> }</div>
         </div>
 
         <div className='rui-manage-shop-item'>

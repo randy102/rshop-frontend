@@ -1,7 +1,7 @@
 import React from 'react'
 import desktop from './desktop.png'
 import './section3.scss'
-import { ShopOutlined, SkinOutlined, DesktopOutlined, LaptopOutlined, CoffeeOutlined } from '@ant-design/icons'
+import { ShopOutlined, SkinOutlined, LaptopOutlined, CoffeeOutlined } from '@ant-design/icons'
 import demo1 from './demo1.jpg'
 
 export default function Section3() {

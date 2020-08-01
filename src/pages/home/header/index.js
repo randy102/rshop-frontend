@@ -3,7 +3,6 @@ import './header.scss'
 import { Link } from 'react-router-dom'
 import brand from './brand.png'
 import { Jwt } from 'utils/jwt'
-import { Dropdown } from 'antd'
 
 export default function Header() {
   function renderAuth() {

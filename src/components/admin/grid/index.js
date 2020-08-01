@@ -15,7 +15,7 @@ function getNestedPath(data, path) {
 const HEAD_DATA = {
   create: {
     icon: 'PlusOutlined',
-    name: 'Tạo'
+    name: 'Thêm'
   },
   refresh: {
     icon: 'RedoOutlined',

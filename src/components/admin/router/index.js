@@ -1,8 +1,10 @@
 import React from 'react'
 import { Switch, Route, useRouteMatch, useHistory, useLocation } from 'react-router-dom'
 import NotFoundError from 'pages/error/notfound'
+import PermissionError from 'pages/error/permission'
+import Loader from '../Loader'
 
-export default function Router({ routes, components }) {
+export default function Router({ routes, components, permissions=[], isMaster, loading=false }) {
   const match = useRouteMatch()
   const history = useHistory()
   const location = useLocation()
@@ -23,6 +25,12 @@ export default function Router({ routes, components }) {
             key={route.path}
             path={match.path + route.path}
             render={() => {
+              if(loading)
+                return <Loader/>
+
+              if(route.require && !isMaster && !permissions.some(p => p === route.require))
+                return <PermissionError/>
+              
               document.title = route.name
               return <Component/>
             }}

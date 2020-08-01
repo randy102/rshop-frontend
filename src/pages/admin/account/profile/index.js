@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import UserProfile from 'components/commons/UserProfile'
-import { Button, Space } from 'antd'
+import { Button } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import Form from './form'
 import { GET_USER_PROFILE } from './queries'

@@ -5,11 +5,13 @@ import Body from 'components/admin/Body'
 import Profile from './profile'
 import Password from './password'
 import Logout from './logout'
+import Contract from './contract'
 
 const Component = {
   Profile,
   Password,
-  Logout
+  Logout,
+  Contract
 }
 
 export default function Account() {

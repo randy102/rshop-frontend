@@ -117,6 +117,11 @@ const AdminRouteConfig = [
         default: true
       },
       {
+        path: '/contract',
+        name: 'Hợp đồng',
+        component: 'Contract'
+      },
+      {
         path: '/password',
         name: 'Đổi mật khẩu',
         component: 'Password'
