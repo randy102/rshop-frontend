@@ -14,18 +14,20 @@ import { useRecoilState } from 'recoil'
 import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
 import { GET_CURRENT_ROLE } from './queries'
 import { useQuery } from '@apollo/react-hooks'
+import Product from './product'
 
 const Components = {
   Dashboard,
   Shop,
   Account,
-  Staff
+  Staff,
+  Product
 }
 
 export default function Manage() {
   const [currentShop] = useRecoilState(CURRENT_SHOP)
   const { data, loading } = useQuery(GET_CURRENT_ROLE, { variables: { idShop: currentShop?._id } })
-  console.log(data)
+
   return (
     <MiddleWare.Contract>
       <MiddleWare.Domain>

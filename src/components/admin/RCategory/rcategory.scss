@@ -1,0 +1,55 @@
+.rui-admin-category {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+
+  .arrow{
+    margin: auto 10px;
+  }
+
+  .section {
+    width: 30%;
+    border: 1px solid #cfcfcf;
+    height: 400px;
+    overflow-y: auto;
+    position: relative;
+    padding-bottom: 53px;
+
+    .header {
+      background: #ececec;
+      font-weight: bold;
+      padding: 8px 15px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      padding: 10px;
+      border-top: 1px solid #cfcfcf;
+      width: 100%;
+      text-align: center;
+    }
+
+    .items-wrap {
+      .item {
+        padding: 10px 12px;
+        transition: background 0.2s;
+        font-size: 20px;
+
+        &:hover,
+        &.active {
+          background: #dbf1ff;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+
+        .ant-checkbox + span {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+}

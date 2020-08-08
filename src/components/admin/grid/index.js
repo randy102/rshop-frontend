@@ -109,7 +109,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
     <div>
       <div className='rui-grid-btn'>
         <Space>
-          {headDef && headDef.map(({ icon, selection, name, onClick, type, confirm, confirmMessage }) => {
+          {headDef && headDef.map(({ icon, selection, name, onClick, type, confirm, confirmMessage, loading = false }) => {
             icon = icon || HEAD_DATA[type]?.icon
             name = name || HEAD_DATA[type]?.name
             selection = selection || (type && HEAD_DATA[type].selection)
@@ -129,6 +129,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
             }
             return (
               <Button
+                loading={loading}
                 key={name}
                 disabled={isDisabled}
                 onClick={() => confirm ? confirmClick(onClick) : onClick(selectedRows)}

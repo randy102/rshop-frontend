@@ -71,14 +71,14 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
   ]
 
   function handleDemoImgChange(id){
-    console.log(id)
+  
     setDemo(id)
     if(initRow){
       let {code,__typename,...toUpdate} = { 
         ...initRow,
         demoImg: id || ''
       }
-      console.log({toUpdate})
+     
       update({ variables: { input: toUpdate } })
         .then(() => {
           message.success(`Cập nhật thành công`)

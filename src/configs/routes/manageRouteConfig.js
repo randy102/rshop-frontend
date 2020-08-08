@@ -52,6 +52,16 @@ const ManageRouteConfig = [
         path: '/general',
         name: 'Tổng quan',
         component: 'General'
+      },
+      {
+        path: '/category',
+        name: 'Thể loại',
+        component: 'Category'
+      },
+      {
+        path: '/brand',
+        name: 'Thương hiệu',
+        component: 'Brand'
       }
     ]
   },

@@ -3,7 +3,7 @@ import { Form, Input, InputNumber } from 'antd'
 import './rinput.scss'
 import { currencyFormatter } from 'utils/string'
 
-export default function RInput({value, number=false, price=false, textarea=false, name,label,rules, disabled = false, visible = true, placeholder, prefix,suffix,onChange=()=>{}}) {
+export default function RInput({value, number=false, price=false, textarea=false,autoFocus=false, name,label,rules, disabled = false, visible = true, placeholder, prefix,suffix,onChange=()=>{}}) {
   const itemProps = {
     name,
     label,
@@ -20,6 +20,7 @@ export default function RInput({value, number=false, price=false, textarea=false
     disabled,
     placeholder,
     value,
+    autoFocus,
     onKeyPress: e => {
       if(disabled) {
         e.preventDefault()

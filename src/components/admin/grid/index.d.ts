@@ -19,6 +19,7 @@ export interface HeaderType{
   type?: HeaderBtnType
   confirm: boolean
   confirmMessage: string
+  loading: boolean
 }
 
 export type HeaderBtnType = 'create' | 'read' | 'update' | 'delete' | 'refresh' | 'detail'

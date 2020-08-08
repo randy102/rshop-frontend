@@ -18,6 +18,7 @@ export interface RInputProps{
   textarea?: boolean
   number?: boolean
   price?:boolean
+  autoFocus?:boolean
 }
 export interface Rules{
   max?: number;
