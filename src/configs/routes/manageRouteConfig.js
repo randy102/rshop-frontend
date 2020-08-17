@@ -66,6 +66,23 @@ const ManageRouteConfig = [
     ]
   },
 
+  // Store
+  {
+    path: '/store',
+    name: 'Kho hàng',
+    icon: 'CodeSandboxOutlined',
+    component: 'Store',
+    require: 'STORE',
+    childrens: [
+      {
+        default: true,
+        path: '/general',
+        name: 'Tổng quan',
+        component: 'General'
+      }
+    ]
+  },
+
   // Sale
   {
     path: '/sale',
@@ -82,13 +99,14 @@ const ManageRouteConfig = [
       }
     ]
   },
+
   // Activities
   {
-    path: '/activity',
-    name: 'Hoạt động',
-    icon: 'FundProjectionScreenOutlined',
-    component: 'Activity',
-    require: 'ACTIVITY',
+    path: '/promotion',
+    name: 'Khuyến mãi',
+    icon: 'ShoppingCartOutlined',
+    component: 'Promotion',
+    require: 'PROMOTION',
     childrens: [
       {
         default: true,
@@ -99,7 +117,6 @@ const ManageRouteConfig = [
     ]
   },
 
-  
 
   //Staff
   {

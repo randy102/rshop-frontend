@@ -35,12 +35,8 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
     refetch()
   }
 
-  const footDef = [
-    {
-      name: 'Lưu',
-      type: 'danger',
-      onClick: () => {
-        form.validateFields()
+  function handleSubmit() {
+    form.validateFields()
           .then(input => {
             // If create
             if (!initRow) {
@@ -60,8 +56,14 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
                   clearFormData()
                 }).catch(e => message.error(e.message))
             }
-          }).catch(err => message.error(err.message))
-      }
+          }).catch(() => message.error('Lỗi nhập liệu'))
+  }
+
+  const footDef = [
+    {
+      name: 'Lưu',
+      type: 'primary',
+      onClick: handleSubmit
     },
 
     {

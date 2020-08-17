@@ -109,7 +109,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
     <div>
       <div className='rui-grid-btn'>
         <Space>
-          {headDef && headDef.map(({ icon, selection, name, onClick, type, confirm, confirmMessage, loading = false }) => {
+          {headDef && headDef.map(({disabled=false, icon, selection, name, onClick, type, confirm, confirmMessage, loading = false }) => {
             icon = icon || HEAD_DATA[type]?.icon
             name = name || HEAD_DATA[type]?.name
             selection = selection || (type && HEAD_DATA[type].selection)
@@ -118,7 +118,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
             const Icon = AntIcon[icon]
             const singleError = (selection === 'single' && selectedRows.length !== 1)
             const multipleError = (selection === 'multiple' && selectedRows.length === 0)
-            const isDisabled = singleError ? true : (multipleError ? true : false)
+            const isDisabled = disabled || singleError ? true : (multipleError ? true : false)
 
             function confirmClick(cb) {
               Modal.confirm({

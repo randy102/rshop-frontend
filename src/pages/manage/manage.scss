@@ -3,3 +3,26 @@
 *{
   font-family: 'Roboto', sans-serif;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ebebeb;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  
+  background: #54aadd;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #454545; 
+}
+

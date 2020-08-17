@@ -123,6 +123,7 @@ export default function Form({ openForm, setOpenForm, initRow, refetch }) {
 
 
         <RRadio
+          style={{marginLeft: 10}}
           data={dataTemplates && dataTemplates.activeTemplates}
           label="Chủ đề"
           name="idTemplate"

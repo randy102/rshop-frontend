@@ -1,5 +1,6 @@
 import React from 'react'
 import { Drawer as AntDrawer, Button } from 'antd'
+import './drawer.scss'
 
 export default function Drawer({ visible, onClose, title, footDef = [], children }) {
   const footer = footDef.length && footDef.map(({ name, onClick, visible = true, type = '' }) => {
@@ -16,7 +17,7 @@ export default function Drawer({ visible, onClose, title, footDef = [], children
 
   return (
     <AntDrawer
-      width={500}
+      width={600}
       visible={visible}
       onClose={onClose}
       title={title}

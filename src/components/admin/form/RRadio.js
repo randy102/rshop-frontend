@@ -16,14 +16,15 @@ import './rradio.scss'
 
 // function FRRadioImage
 
-function RRadio({ disabled = false, required = false, name, label, data = [], prefix, placeholder, onChange = () => { }, optionRender=() =>{}, optionValue=()=>{} }) {
+function RRadio({style, disabled = false, required = false, name, label, data = [], prefix, placeholder, onChange = () => { }, optionRender=() =>{}, optionValue=()=>{} }) {
 
   const itemProps = {
     name,
     label,
     rules: [{
       required
-    }]
+    }],
+    style
   }
 
   const inputProps = {

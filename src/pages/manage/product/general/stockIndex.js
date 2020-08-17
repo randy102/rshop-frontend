@@ -1,59 +1,49 @@
 import React, { useState } from 'react'
 import Grid from 'components/admin/Grid'
-import Form from './form'
+import Form from './stockForm'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { DELETE_PRODUCT, GET_PRODUCTS } from './queries'
-import { message, Tag } from 'antd'
+import { DELETE_STOCK, GET_PRODUCT_STOCKS } from './queries'
+import { message } from 'antd'
 import { useRecoilState } from 'recoil'
 import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
-import { Moment } from 'utils/moment'
+import Image from 'components/commons/Image'
 
-export default function General() {
+export default function Stock({idProduct}) {
   const [currentShop] = useRecoilState(CURRENT_SHOP)
 
   const [openForm, setOpenForm] = useState(false)
   const [refreshLoading, setRefreshLoading] = useState(false)
   const [initRow, setInitRow] = useState()
-  const { data, refetch } = useQuery(GET_PRODUCTS,{variables: {idShop: currentShop?._id}})
-  const [deleteRow] = useMutation(DELETE_PRODUCT)
+  const { data, refetch } = useQuery(GET_PRODUCT_STOCKS,{variables: {idShop: currentShop?._id, idProduct}})
+  const [deleteRow] = useMutation(DELETE_STOCK)
 
   return (
     <div>
       <Grid
-        data={data?.products}
+        data={data?.stocksByProduct}
         colDef={[
           {
-            title: 'Tên mặt hàng',
+            title: '',
+            dataIndex: 'imgs',
+            key: 'img',
+            render: imgs => imgs?.length && <Image style={{width: 80}} fromAws src={imgs[0]}/>
+          },
+          {
+            title: 'Phân loại',
             dataIndex: 'name',
             key: 'name'
           },
           {
-            title: 'Thể loại',
-            dataIndex: ['category','name'],
-            key: 'category'
+            title: 'Giá',
+            dataIndex: 'salePrice',
+            key: 'price'
           },
           {
-            title: 'Thương hiệu',
-            dataIndex: ['brand','name'],
-            key: 'brand'
+            title: 'Thông số',
+            dataIndex: 'info',
+            key: 'info',
+            render: ({long,width,height,weight}) => `${long}m x ${width}m x ${height}m | ${weight} kg`
           },
-          {
-            title: 'Mô tả',
-            dataIndex: 'description',
-            key: 'des'
-          },
-          {
-            title: 'Trạng thái',
-            dataIndex: 'isActive',
-            key: 'active',
-            render: isActive => isActive ? <Tag color='blue'>Hiển thị</Tag> : <Tag>Ẩn</Tag>
-          },
-          {
-            title: 'Ngày tạo',
-            dataIndex: 'createdAt',
-            key: 'createdAt',
-            render: value => Moment(value).format('D-MM-YYYY')
-          }
         ]}
 
         headDef={[
@@ -61,14 +51,15 @@ export default function General() {
             type: 'create',
             onClick: () => {
               setOpenForm(true)
-            }
+            },
+            disabled: !idProduct
           },
           {
             type: 'update',
             onClick: (rows) => {
               setInitRow(rows[0])
               setOpenForm(true)
-            },
+            }
           },
           {
             type: 'delete',
@@ -87,7 +78,8 @@ export default function General() {
               setRefreshLoading(true)
               refetch().then(() => setRefreshLoading(false))
             },
-            loading: refreshLoading
+            loading: refreshLoading,
+            disabled: !idProduct
           }
         ]}
       />
@@ -98,6 +90,7 @@ export default function General() {
         initRow={initRow}
         setInitRow={setInitRow}
         refetch={refetch}
+        idProduct={idProduct}
       />
     </div>
   )

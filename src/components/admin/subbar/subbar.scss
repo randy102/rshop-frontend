@@ -1,35 +1,35 @@
 .rui-subbar-title {
   font-weight: bold;
-  font-size: 25px;
-  border-bottom: 1px solid #8ea4ac1c;
+  font-size: 28px;
   padding-bottom: 5px;
+  color: #646464;
+  padding-left: 15px;
 }
 
 .rui-subbar-menu {
-  margin-top: 20px;
-
+  
   .rui-subbar-item {
     display: flex;
 
     a {
-      padding: 10px 16px;
+      padding: 10px 25px;
       width: 100%;
-      color: #919191;
+      color: #818181;
       font-size: 16px;
-      border-left: 4px solid white;
-
+      transition: font-weight 0.2s;
+      border-radius: 50px;
+      
+      
       &:hover {
-        color: #3ca9dd;
-        transition: color 0.3s;
+        font-weight: bold;
+        transition: font-weight 0.2s;
       }
 
       &.active {
-        color: #3ca9dd;
-        border-left: 4px solid #3ca9dd;
-        transition: box-shadow 0.3s;
-        transition: border-left 0.3s;
+        background: #eeeeee;
+        color: #818181;
+        transition: background 0.2s;
         font-weight: bold;
-        box-shadow: 2px 2px 5px #cdcdcd7a;
       }
     }
   }
