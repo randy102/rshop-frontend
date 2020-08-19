@@ -47,11 +47,13 @@ export default function General() {
     },
     {
       type: 'delete',
-      onClick: (rows) => {
+      onClick: (rows, setRows) => {
         let input = { ids: rows.map(r => r._id) }
         deleteUser({ variables: { input } })
           .then(res => {
             message.success('Xóa thành công')
+            setRows([])
+            setInitRow(undefined)
             refetch()
           }).catch(e => message.error(e.message))
       },

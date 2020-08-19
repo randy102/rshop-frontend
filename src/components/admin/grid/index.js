@@ -44,7 +44,7 @@ const HEAD_DATA = {
   }
 }
 
-export default function Grid({ data, colDef, headDef, loading = false }) {
+export default function Grid({pagination=true, data, colDef, headDef, loading = false, expandRender, showSelection = true }) {
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
   var searchInput
@@ -107,7 +107,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
 
   return (
     <div>
-      <div className='rui-grid-btn'>
+      {headDef?.length && <div className='rui-grid-btn'>
         <Space>
           {headDef && headDef.map(({disabled=false, icon, selection, name, onClick, type, confirm, confirmMessage, loading = false }) => {
             icon = icon || HEAD_DATA[type]?.icon
@@ -124,7 +124,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
               Modal.confirm({
                 title: confirmMessage || 'Bạn có chắc muốn thực hiện hành động này?',
                 icon: <ExclamationCircleOutlined />,
-                onOk:() => cb(selectedRows)
+                onOk:() => cb(selectedRows, setSelectedRows)
               })
             }
             return (
@@ -132,7 +132,7 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
                 loading={loading}
                 key={name}
                 disabled={isDisabled}
-                onClick={() => confirm ? confirmClick(onClick) : onClick(selectedRows)}
+                onClick={() => confirm ? confirmClick(onClick) : onClick(selectedRows, setSelectedRows)}
                 icon={Icon && <Icon />}
               >
                 {name}
@@ -140,23 +140,25 @@ export default function Grid({ data, colDef, headDef, loading = false }) {
             )
           })}
         </Space>
-      </div>
+      </div>}
 
       <Table
         size='middle'
         showSorterTooltip={false}
-        pagination={{ defaultPageSize: 10 }}
+        pagination={pagination && { defaultPageSize: 10 }}
         loading={loading}
         columns={colDef}
         dataSource={data}
         rowKey='_id'
-        rowSelection={{
+        expandedRowRender={expandRender}
+        rowSelection={ showSelection && {
           type: 'checkbox',
           onChange: (keys, rows) => {
             setSelectedRows(rows)
             setSelectedRowKeys(keys)
           },
-          selectedRowKeys
+          selectedRowKeys,
+          preserveSelectedRowKeys: false
         }}
       />
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Drawer from 'components/admin/Drawer'
 import RForm from 'components/admin/Form'
 
@@ -22,6 +22,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
 
   const [idProduct, setIdProduct] = useState()
   const [submitLoading, setSubmitLoading] = useState(false)
+  const bottomRef = useRef()
 
   const [form] = AntForm.useForm()
   const [create] = useMutation(CREATE_PRODUCT)
@@ -47,32 +48,36 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
     setOpenForm(false)
     refetch()
     setSubmitLoading(false)
+    setIdProduct(undefined)
   }
 
   function handleSubmit() {
     form.validateFields()
-    .then(input => {
-        setSubmitLoading(true)
+      .then(input => {
+        console.log(idProduct, input)
         // If create
-        if (!initRow) {
+        if (!initRow && !idProduct) {
+          setSubmitLoading(true)
           create({ variables: { idShop: currentShop?._id, input } })
             .then(res => {
               message.success(`Tạo thành công. Hiện tại bạn có thể thêm phân loại hàng`)
               setIdProduct(res.data.createProduct._id)
               setSubmitLoading(false)
+              bottomRef.current.scrollIntoView({ behavior: "smooth" })
             }).catch(e => message.error(e.message))
         }
 
         // If update
         else {
-          let { ...toUpdate } = { ...input, _id: initRow._id } || {}
+          setSubmitLoading(true)
+          let { ...toUpdate } = { ...input, _id: initRow?._id || idProduct } || {}
           update({ variables: { idShop: currentShop?._id, input: toUpdate } })
             .then(() => {
               message.success(`Cập nhật thành công`)
               setSubmitLoading(false)
             }).catch(e => message.error(e.message))
         }
-      }).catch(err => message.error(err.message))
+      }).catch(() => message.error('Lỗi nhập liệu'))
   }
 
   const footDef = [
@@ -140,6 +145,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
           name='isActive'
           checkedText='Hiển thị'
           unCheckedText='Ẩn'
+          defaultChecked={false}
         />
 
         <RInput
@@ -162,10 +168,13 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
         style={{ marginTop: '40px', fontWeight: 'bold' }}
       >
         Phân loại hàng
-        </Divider>
+      </Divider>
 
       <Stock idProduct={idProduct} />
 
+      <div style={{ float: "left", clear: "both" }}
+        ref={bottomRef}>
+      </div>
     </Drawer>
   )
 }

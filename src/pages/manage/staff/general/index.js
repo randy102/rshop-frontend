@@ -68,10 +68,12 @@ export default function General() {
           {
             type: 'delete',
             selection: 'single',
-            onClick: (rows) => {
+            onClick: (rows, setRows) => {
               deletePermission({ variables: { id: rows[0]._id, idShop: currentShop?._id } })
                 .then(() => {
                   message.success('Xóa thành công')
+                  setRows([])
+                  setInitRow(undefined)
                   refetch()
                 }).catch(e => message.error(e.message))
             }

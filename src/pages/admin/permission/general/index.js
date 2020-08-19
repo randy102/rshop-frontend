@@ -41,11 +41,13 @@ export default function General() {
     {
       type: 'delete',
       selection: 'multiple',
-      onClick: (rows) => {
+      onClick: (rows, setRows) => {
         let input = { ids: rows.map(r => r._id) }
         deletePermission({ variables: { input } })
           .then(() => {
             message.success('Xóa thành công')
+            setRows([])
+            setInitRow(undefined)
             refetch()
           }).catch(e => message.error(e.message))
       }

@@ -53,10 +53,12 @@ export default function General() {
     },
     {
       type: 'delete',
-      onClick: (rows) => {
+      onClick: (rows, setRows) => {
         deleteRow({variables: {id: rows[0]._id}})
           .then(() => {
             message.success('Xóa thành công')
+            setRows([])
+            setInitRow(undefined)
             refetch()
           }).catch(e => message.error(e.message))
       },

@@ -27,12 +27,6 @@ const GET_CURRENT_USER = gql`
 
 export default function Guard({ children, onlyAdmin }) {
   const { data, loading, error } = useQuery(GET_CURRENT_USER)
-  // const [currentUser, setCurrentUser] = useRecoilState(CURRENT_USER)
-  // useEffect(() => {
-  //   if (data) {
-  //     setCurrentUser(data.currentUser)
-  //   }
-  // }, [data])
   
   // Not have token
   if(!Jwt.isSet()) return <AuthError />

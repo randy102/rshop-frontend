@@ -12,7 +12,6 @@ export default function Stock({idProduct}) {
   const [currentShop] = useRecoilState(CURRENT_SHOP)
 
   const [openForm, setOpenForm] = useState(false)
-  const [refreshLoading, setRefreshLoading] = useState(false)
   const [initRow, setInitRow] = useState()
   const { data, refetch } = useQuery(GET_PRODUCT_STOCKS,{variables: {idShop: currentShop?._id, idProduct}})
   const [deleteRow] = useMutation(DELETE_STOCK)
@@ -64,10 +63,14 @@ export default function Stock({idProduct}) {
           {
             type: 'delete',
             selection: 'single',
-            onClick: (rows) => {
+            onClick: (rows, setSelectedRows) => {
+              const hideLoading = message.loading()
               deleteRow({ variables: { idShop: currentShop?._id, ids: rows.map(r => r._id) } })
                 .then(() => {
                   message.success('Xóa thành công')
+                  setSelectedRows([])
+                  setInitRow(undefined)
+                  hideLoading()
                   refetch()
                 }).catch(e => message.error(e.message))
             }
@@ -75,10 +78,9 @@ export default function Stock({idProduct}) {
           {
             type: 'refresh',
             onClick: () => {
-              setRefreshLoading(true)
-              refetch().then(() => setRefreshLoading(false))
+              const hideLoading = message.loading()
+              refetch().then(hideLoading)
             },
-            loading: refreshLoading,
             disabled: !idProduct
           }
         ]}

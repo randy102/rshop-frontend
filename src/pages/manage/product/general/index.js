@@ -7,12 +7,12 @@ import { message, Tag } from 'antd'
 import { useRecoilState } from 'recoil'
 import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
 import { Moment } from 'utils/moment'
+import ExpandStockGrid from './expandStock'
 
 export default function General() {
   const [currentShop] = useRecoilState(CURRENT_SHOP)
 
   const [openForm, setOpenForm] = useState(false)
-  const [refreshLoading, setRefreshLoading] = useState(false)
   const [initRow, setInitRow] = useState()
   const { data, refetch } = useQuery(GET_PRODUCTS,{variables: {idShop: currentShop?._id}})
   const [deleteRow] = useMutation(DELETE_PRODUCT)
@@ -21,6 +21,7 @@ export default function General() {
     <div>
       <Grid
         data={data?.products}
+        expandRender={row => <ExpandStockGrid idProduct={row._id} idShop={currentShop?._id}/>}
         colDef={[
           {
             title: 'Tên mặt hàng',
@@ -72,22 +73,24 @@ export default function General() {
           },
           {
             type: 'delete',
-            selection: 'single',
-            onClick: (rows) => {
+            onClick: (rows, setSelectedRows) => {
+              const hide = message.loading()
               deleteRow({ variables: { idShop: currentShop?._id, ids: rows.map(r => r._id) } })
                 .then(() => {
                   message.success('Xóa thành công')
+                  setInitRow(undefined)
+                  setSelectedRows([])
                   refetch()
+                  hide()
                 }).catch(e => message.error(e.message))
             }
           },
           {
             type: 'refresh',
             onClick: () => {
-              setRefreshLoading(true)
-              refetch().then(() => setRefreshLoading(false))
-            },
-            loading: refreshLoading
+              const hideLoading = message.loading()
+              refetch().then(hideLoading)
+            }
           }
         ]}
       />

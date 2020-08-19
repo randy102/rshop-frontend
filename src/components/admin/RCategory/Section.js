@@ -48,6 +48,7 @@ export default function Section({ data = [], parent, title, isFirst = false, isL
       return
     }
     onDelete(checkedId)
+    setCheckedId(undefined)
   }
 
   function handleUpdate() {
@@ -113,7 +114,6 @@ export default function Section({ data = [], parent, title, isFirst = false, isL
           />
           <Button onClick={onSubmit} type='primary' block style={{ marginTop: '-20px' }}>Lưu</Button>
         </RForm>
-
 
       </Modal>
     </>

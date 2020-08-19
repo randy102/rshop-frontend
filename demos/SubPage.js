@@ -11,7 +11,6 @@ export default function General() {
   const [currentShop] = useRecoilState(CURRENT_SHOP)
 
   const [openForm, setOpenForm] = useState(false)
-  const [refreshLoading, setRefreshLoading] = useState(false)
   const [initRow, setInitRow] = useState()
   const { data, refetch } = useQuery(QUERY,{variables: {idShop: currentShop?._id}})
   const [deleteRow] = useMutation(/* ... */)
@@ -44,11 +43,14 @@ export default function General() {
           },
           {
             type: 'delete',
-            selection: 'single',
-            onClick: (rows) => {
+            onClick: (rows, setSelectedRows) => {
+              const hideLoading = message.loading()
               deleteRow({ variables: { idShop: currentShop?._id, ids: rows.map(r => r._id) } })
                 .then(() => {
                   message.success('Xóa thành công')
+                  setInitRow(undefined)
+                  setSelectedRows([])
+                  hideLoading()
                   refetch()
                 }).catch(e => message.error(e.message))
             }
@@ -56,10 +58,9 @@ export default function General() {
           {
             type: 'refresh',
             onClick: () => {
-              setRefreshLoading(true)
-              refetch().then(() => setRefreshLoading(false))
-            },
-            loading: refreshLoading
+              const hideLoading = message.loading()
+              refetch().then(hideLoading)
+            }
           }
         ]}
       />

@@ -79,11 +79,13 @@ export default function General() {
     {
       type: 'delete',
       selection: 'multiple',
-      onClick: rows => {
+      onClick: (rows,setRows) => {
         let ids =  rows.map(r => r._id)
         deletePlan({ variables: { ids } })
           .then(() => {
             message.success('Xóa thành công')
+            setRows([])
+            setInitRow(undefined)
             refetch()
           }).catch(e => message.error(e.message))
       }

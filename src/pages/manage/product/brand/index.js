@@ -56,10 +56,12 @@ export default function Brand() {
           },
           {
             type: 'delete',
-            onClick: (rows) => {
+            onClick: (rows, setRows) => {
               deleteRow({ variables: { idShop: currentShop?._id, ids: rows.map(r => r._id) } })
                 .then(() => {
                   message.success('Xóa thành công')
+                  setRows([])
+                  setInitRow(undefined)
                   refetch()
                 }).catch(e => message.error(e.message))
             }

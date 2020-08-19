@@ -9,7 +9,12 @@ export interface GridProps{
   colDef: ColumnsType<any>
   headDef: HeaderType[]
   loading?: boolean
+  expandRender?: ExpandedRowRender<RecordType>
+  showSelection?: boolean
+  pagination?:boolean
 }
+
+export declare type ExpandedRowRender<ValueType> = (record: ValueType, index: number, indent: number, expanded: boolean) => React.ReactNode
 
 export interface HeaderType{
   icon: string
