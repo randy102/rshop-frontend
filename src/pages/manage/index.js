@@ -15,13 +15,15 @@ import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
 import { GET_CURRENT_ROLE } from './queries'
 import { useQuery } from '@apollo/react-hooks'
 import Product from './product'
+import Store from './store'
 
 const Components = {
   Dashboard,
   Shop,
   Account,
   Staff,
-  Product
+  Product,
+  Store
 }
 
 export default function Manage() {

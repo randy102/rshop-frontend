@@ -33,6 +33,11 @@ export default function Stock({idProduct}) {
             key: 'name'
           },
           {
+            title: 'Mã hàng',
+            dataIndex: 'code',
+            key: 'code'
+          },
+          {
             title: 'Giá',
             dataIndex: 'salePrice',
             key: 'price'

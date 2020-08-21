@@ -151,6 +151,9 @@ export default function Grid({pagination=true, data, colDef, headDef, loading = 
         dataSource={data}
         rowKey='_id'
         expandedRowRender={expandRender}
+        locale={{
+          emptyText: 'Không có dữ liệu'
+        }}
         rowSelection={ showSelection && {
           type: 'checkbox',
           onChange: (keys, rows) => {

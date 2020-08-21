@@ -79,6 +79,11 @@ const ManageRouteConfig = [
         path: '/general',
         name: 'Tổng quan',
         component: 'General'
+      },
+      {
+        path: '/stock',
+        name: 'Hàng hóa',
+        component: 'Stock'
       }
     ]
   },

@@ -1,7 +1,7 @@
 import { gql } from "apollo-boost";
 
 export const GET_ = gql`
-  query ($idShop: String){
+  query Get($idShop: String){
     (idShop: $idShop){
       _id
       
@@ -26,8 +26,8 @@ export const UPDATE_ = gql`
 `
 
 export const DELETE_ = gql`
-  mutation Delete($idShop: String, $id: String){
-    delete(idShop: $idShop, id: $id)
+  mutation Delete($idShop: String, $ids: [String]){
+    delete(idShop: $idShop, ids: $ids)
   }
 `
 

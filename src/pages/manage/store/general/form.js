@@ -4,21 +4,21 @@ import RForm from 'components/admin/Form'
 
 import { Form as AntForm, message } from 'antd'
 import { useMutation } from '@apollo/react-hooks'
-import {  } from './queries'
+import { CREATE_STORE, UPDATE_STORE } from './queries'
 import { useRecoilState } from 'recoil'
 import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
+import RInput from 'components/admin/Form/RInput'
 
 const CONFIG = {
-  FORM_NAME: '',
-  INIT_FORM_PATH: ''
+  FORM_NAME: 'Kho hàng mới'
 }
 
 export default function Form({ openForm, setOpenForm, initRow, setInitRow, refetch }) {
   const [currentShop] = useRecoilState(CURRENT_SHOP)
   
   const [form] = AntForm.useForm()
-  const [create] = useMutation()
-  const [update] = useMutation()
+  const [create] = useMutation(CREATE_STORE)
+  const [update] = useMutation(UPDATE_STORE)
   
 
   // eslint-disable-next-line
@@ -75,14 +75,21 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
 
   return (
     <Drawer
-      title={initRow ? initRow[CONFIG.INIT_FORM_PATH] : CONFIG.FORM_NAME}
+      title={initRow ? initRow.name : CONFIG.FORM_NAME}
       onClose={clearFormData}
       visible={openForm}
       footDef={footDef}
     >
       <RForm form={form} initialValues={initialValues}>
-        
-
+        <RInput
+          label='Tên kho'
+          name='name'
+          rules={{required: true}}
+        />
+        <RInput
+          label='Địa chỉ'
+          name='address'
+        />
       </RForm>
     </Drawer>
   )

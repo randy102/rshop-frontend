@@ -60,6 +60,7 @@ export const GET_PRODUCT_STOCKS = gql`
       name
       salePrice
       imgs
+      code
       info {
         long
         width
