@@ -4,9 +4,9 @@ import RForm from 'components/admin/Form'
 import RInput from 'components/admin/Form/RInput'
 import { Form as AntForm, message } from 'antd'
 import { useMutation, useQuery } from '@apollo/react-hooks'
-import { CREATE_ROLE, UPDATE_ROLE } from './queries'
+import { CREATE_ROLE, UPDATE_ROLE, GET_USERS_BY_EMAIL } from './queries'
 import RSelect from 'components/admin/Form/RSelect'
-import { GET_USERS } from 'pages/admin/user/general/queries'
+
 import { GET_PERMISSION } from 'pages/admin/permission/general/queries'
 import { useRecoilState } from 'recoil'
 import { CURRENT_SHOP } from 'recoil/atoms/currentShop'
@@ -18,7 +18,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
   const [form] = AntForm.useForm()
   const [create] = useMutation(CREATE_ROLE)
   const [update] = useMutation(UPDATE_ROLE)
-  const { data: userData, refetch: userRefetch } = useQuery(GET_USERS)
+  const { data: userData, refetch: userRefetch } = useQuery(GET_USERS_BY_EMAIL, {variables: {idShop: currentShop?._id, email: ''}})
   const { data: permissionData, refetch: permissionRefetch } = useQuery(GET_PERMISSION)
 
   // eslint-disable-next-line
@@ -81,12 +81,12 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
       <RForm form={form} initialValues={initialValues}>
         <RSelect
           disabled={initRow}
-          data={userData?.users}
+          data={userData?.usersByEmail}
           name='idUser'
           label='Người dùng'
+          placeholder='Nhập email người dùng'
           showSearch
           required
-          refetch={userRefetch}
           filterProps={(row) => [row.profile.fullName, row.credential.email]}
           optionValue={row => row._id}
           labelRender={row => row.profile.fullName}
@@ -96,6 +96,7 @@ export default function Form({ openForm, setOpenForm, initRow, setInitRow, refet
               {row.credential.email}
             </div>
           )}
+          onSearch={input => userRefetch({idShop: currentShop?._id, email: input})}
         />
 
         <RInput

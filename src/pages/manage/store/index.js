@@ -4,6 +4,7 @@ import ManageRouteConfig from 'configs/routes/manageRouteConfig'
 import Body from 'components/admin/Body'
 import General from './general'
 import Stock from './stock'
+import History from './history'
 
 const CONFIG = {
   ROUTE_NAME: 'Store',
@@ -12,7 +13,8 @@ const CONFIG = {
 
 const Components = {
   General,
-  Stock
+  Stock,
+  History
 }
 
 export default function Store() {
