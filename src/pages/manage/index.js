@@ -16,6 +16,8 @@ import { GET_CURRENT_ROLE } from './queries'
 import { useQuery } from '@apollo/react-hooks'
 import Product from './product'
 import Store from './store'
+import Sale from './sale'
+import Promotion from './promotion'
 
 const Components = {
   Dashboard,
@@ -23,7 +25,9 @@ const Components = {
   Account,
   Staff,
   Product,
-  Store
+  Store,
+  Sale,
+  Promotion
 }
 
 export default function Manage() {
