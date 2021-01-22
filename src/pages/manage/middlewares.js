@@ -20,7 +20,7 @@ function Contract({ children }) {
 
   if (data) {
     // If not have contract or expired
-    if (!data.activeContract._id)
+    if (!data.activeContract?._id)
       return <Redirect to="/contract" />
 
   }
