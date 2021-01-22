@@ -45,18 +45,3 @@ export const DELETE_ROLE = gql`
     deleteRole(idShop: $idShop, id: $id)
   }
 `
-
-export const GET_USERS_BY_EMAIL = gql`
-  query Get($idShop: String, $email: String){
-    usersByEmail(idShop: $idShop, email: $email){
-      _id
-      credential {
-        email
-      }
-      profile {
-        fullName
-      }
-      isAdmin
-    }
-  }
-`

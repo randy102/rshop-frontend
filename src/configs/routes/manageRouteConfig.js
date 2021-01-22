@@ -84,11 +84,6 @@ const ManageRouteConfig = [
         path: '/stock',
         name: 'Hàng hóa',
         component: 'Stock'
-      },
-      {
-        path: '/history',
-        name: 'Lịch sử chuyển hàng',
-        component: 'History'
       }
     ]
   },

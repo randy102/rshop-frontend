@@ -2,17 +2,16 @@ import React from 'react'
 import { Form, Select } from 'antd'
 import { removeAccents } from 'utils/string'
 
-function RSelect({mode, disabled = false, required = false, name, label, data = [], prefix, showSearch, placeholder, filterProps = () => { },onChange = () => { }, refetch = () => { }, optionRender=() =>{}, optionValue=()=>{}, labelRender=()=>{}, validator, onSearch=()=>{} }) {
+function RSelect({mode, disabled = false, required = false, name, label, data = [], prefix, showSearch, placeholder, filterProps = () => { },onChange = () => { }, refetch = () => { }, optionRender=() =>{}, optionValue=()=>{}, labelRender=()=>{} }) {
 
   const itemProps = {
     name,
     label,
-    rules: [
-      {required}
-    ]
+    rules: [{
+      required
+    }]
   }
-  if(validator) itemProps.rules.push({validator})
-  
+
   const inputProps = {
     mode,
     prefix,
@@ -29,8 +28,7 @@ function RSelect({mode, disabled = false, required = false, name, label, data = 
       let filterArr = filterProps(row)
       return filterArr.some(val => removeAccents(val).toLowerCase().indexOf(removeAccents(input).toLowerCase()) >= 0)
     },
-    optionLabelProp: 'label',
-    onSearch
+    optionLabelProp: 'label'
   }
 
   return (

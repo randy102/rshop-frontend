@@ -95,7 +95,6 @@ export default function Form({ openForm, setOpenForm, formType: { type, typeName
         <RSelect
           label='Từ kho'
           name='idSrc'
-          required={type != 'IMPORT'}
           placeholder='Chọn kho...'
           disabled={type == 'IMPORT'}
           data={storeData?.stores}
@@ -104,11 +103,6 @@ export default function Form({ openForm, setOpenForm, formType: { type, typeName
           optionRender={row => row.name}
           optionValue={row => row._id}
           onChange={val => setIdSrc(val)}
-          validator={(_, value) => {
-            if(idDes && value === idDes)
-              return Promise.reject('Hai kho không được trùng nhau!')
-            return Promise.resolve()
-          }}
         />
 
         <RSelect
@@ -116,25 +110,18 @@ export default function Form({ openForm, setOpenForm, formType: { type, typeName
           name='idDes'
           placeholder='Chọn kho...'
           disabled={type == 'EXPORT'}
-          required={type != 'EXPORT'}
           data={storeData?.stores}
           refetch={storeRefetch}
           labelRender={row => row.name}
           optionRender={row => row.name}
           optionValue={row => row._id}
           onChange={val => setIdDes(val)}
-          validator={(_, value) => {
-            if(idSrc && value === idSrc)
-              return Promise.reject('Hai kho không được trùng nhau!')
-            return Promise.resolve()
-          }}
         />
 
         <RSelect
           label='Hàng hóa'
           mode='multiple'
           name='items'
-          required
           showSearch
           placeholder='Chọn hàng hóa...'
           data={stockData?.stocks}

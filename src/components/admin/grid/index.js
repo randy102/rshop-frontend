@@ -19,7 +19,7 @@ const HEAD_DATA = {
   },
   refresh: {
     icon: 'RedoOutlined',
-    name: 'Làm mới'
+    name: 'Tải lại'
   },
   detail: {
     icon: 'EyeOutlined',
