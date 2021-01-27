@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Drawer from 'components/admin/Drawer'
 import RForm from 'components/admin/Form'
 
-import { Form as AntForm, message, Avatar, List, Tag } from 'antd'
+import { Form as AntForm, message, List, Tag } from 'antd'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { TRANSFER_STORE, GET_STOCKS } from './queries'
 import { useRecoilState } from 'recoil'
@@ -96,7 +96,7 @@ export default function Form({ openForm, setOpenForm, formType: { type, typeName
           label='Từ kho'
           name='idSrc'
           placeholder='Chọn kho...'
-          disabled={type == 'IMPORT'}
+          disabled={type === 'IMPORT'}
           data={storeData?.stores}
           refetch={storeRefetch}
           labelRender={row => row.name}
@@ -109,7 +109,7 @@ export default function Form({ openForm, setOpenForm, formType: { type, typeName
           label='Đến kho'
           name='idDes'
           placeholder='Chọn kho...'
-          disabled={type == 'EXPORT'}
+          disabled={type === 'EXPORT'}
           data={storeData?.stores}
           refetch={storeRefetch}
           labelRender={row => row.name}
